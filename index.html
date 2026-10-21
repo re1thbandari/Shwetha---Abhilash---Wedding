@@ -38,7 +38,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async e => {
     await fetch(SHEETS_WEB_APP_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
     const message=`RSVP — Shwetha & Abhilash\nName: ${name}\nAttendance: ${attendance}\nGuests: ${guests}\nFunctions: ${functions}`;
     const url='https://wa.me/'+HOST_WHATSAPP+'?text='+encodeURIComponent(message);
-    status.textContent='RSVP sent for recording (not yet verified). Tap the button below to send your WhatsApp confirmation.';
+    status.textContent='RSVP sent for recording. Tap the button below to send your WhatsApp confirmation.';
     let link=document.getElementById('whatsappRsvpLink');
     if(!link){link=document.createElement('a');link.id='whatsappRsvpLink';link.className='btn';link.target='_blank';link.rel='noopener noreferrer';link.textContent='Send RSVP on WhatsApp ↗';status.after(link);}
     link.href=url;link.style.display='inline-block';
