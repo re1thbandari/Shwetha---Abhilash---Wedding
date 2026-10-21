@@ -73,4 +73,43 @@ document.getElementById('openBtn')?.addEventListener('click', () => {
     })
     .catch(() => {});
 });
-</script></body></html>
+</script>
+
+<style>
+.scroll-hint {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  color: #a16b7e;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-decoration: none;
+  animation: scrollFloat 1.7s ease-in-out infinite;
+}
+.scroll-hint span {
+  display: block;
+  font-size: 26px;
+  margin-top: 4px;
+}
+@keyframes scrollFloat {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 9px); }
+}
+</style>
+
+<a class="scroll-hint" href="#story" id="scrollHint">
+  SCROLL DOWN
+  <span>↓</span>
+</a>
+
+<script>
+window.addEventListener('scroll', () => {
+  const hint = document.getElementById('scrollHint');
+  hint.style.display = window.scrollY > 120 ? 'none' : 'block';
+}, { passive: true });
+</script>
+</body></html>
