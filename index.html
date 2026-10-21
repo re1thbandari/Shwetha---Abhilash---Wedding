@@ -45,4 +45,32 @@ document.getElementById('rsvpForm').addEventListener('submit', async e => {
   }catch(err){status.textContent='Could not send RSVP. Please check your connection and try again.';}
   finally{button.disabled=false;}
 });
+
+const weddingMusic = new Audio('Meghaallo.mp3');
+weddingMusic.loop = true;
+weddingMusic.volume = 0.45;
+
+const musicButton = document.getElementById('musicBtn');
+
+musicButton.addEventListener('click', async () => {
+  if (weddingMusic.paused) {
+    try {
+      await weddingMusic.play();
+      musicButton.textContent = '♫ Music on';
+    } catch (error) {
+      console.error('Music could not play:', error);
+    }
+  } else {
+    weddingMusic.pause();
+    musicButton.textContent = '♫ Music off';
+  }
+});
+
+document.getElementById('openBtn')?.addEventListener('click', () => {
+  weddingMusic.play()
+    .then(() => {
+      musicButton.textContent = '♫ Music on';
+    })
+    .catch(() => {});
+});
 </script></body></html>
