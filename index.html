@@ -77,6 +77,7 @@ document.getElementById('openBtn')?.addEventListener('click', () => {
 
 <style>
 .scroll-hint {
+  display: none;
   position: fixed;
   bottom: 24px;
   left: 50%;
@@ -106,10 +107,31 @@ document.getElementById('openBtn')?.addEventListener('click', () => {
   <span>↓</span>
 </a>
 
+
 <script>
-window.addEventListener('scroll', () => {
-  const hint = document.getElementById('scrollHint');
-  hint.style.display = window.scrollY > 120 ? 'none' : 'block';
-}, { passive: true });
+const scrollHint = document.getElementById('scrollHint');
+const openingScreen = document.getElementById('opening');
+
+function updateScrollHint() {
+  const openingVisible =
+    openingScreen &&
+    getComputedStyle(openingScreen).display !== 'none' &&
+    getComputedStyle(openingScreen).visibility !== 'hidden' &&
+    Number(getComputedStyle(openingScreen).opacity) > 0.01;
+
+  scrollHint.style.display =
+    !openingVisible && window.scrollY < 120
+      ? 'block'
+      : 'none';
+}
+
+window.addEventListener('scroll', updateScrollHint, { passive: true });
+
+document.getElementById('openBtn')?.addEventListener('click', () => {
+  setTimeout(updateScrollHint, 1500);
+});
+
+updateScrollHint();
 </script>
+
 </body></html>
