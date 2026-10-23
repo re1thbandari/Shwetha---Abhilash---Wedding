@@ -1,0 +1,1 @@
+AbhiShweKalyanam website files. Upload the contents at the site root. Wedding date: 20 November 2026. RSVP and Google Drive photo uploads depend on external Apps Script deployments and must be tested; uploading this ZIP does not configure those services. Photos are public without moderation.
