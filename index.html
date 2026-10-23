@@ -542,6 +542,7 @@ body.gallery-active .gallery-page.active {display:block}
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 "use strict";
 
@@ -551,8 +552,9 @@ const SHEETS_WEB_APP_URL =
 
 const HOST_WHATSAPP = '919515282274';
 
-const PHOTO_WEB_APP_URL =
-'https://script.google.com/macros/s/AKfycbxzO4_jFrFdVQGYzdzURFhBn_ygPMFNBfw4RzhBo5CHU3lUKDJfzLBowquJkPtbEC0svQ/exec';
+const SUPABASE_URL = 'https://bsrgpjievbjtphhawtde.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_84romxbRos3bCOwd7vr9zg_PRHsuhgw';
+const PHOTO_BUCKET = 'Wedding Photos';
 
 /* OPENING */
 const opening = document.getElementById('opening');
@@ -696,55 +698,57 @@ document.getElementById('rsvpForm').addEventListener('submit', async e => {
   }
 });
 
-/* PHOTO GALLERY — JSONP read + simple POST upload, no iframe */
+/* PHOTO GALLERY — Supabase Storage (no Google Apps Script) */
 const eventNames={haldi:'Haldi',wedding:'Wedding',reception:'Reception'};
 const galleryPage=document.getElementById('galleryPage');
 const galleryGrid=document.getElementById('galleryGrid');
 const galleryStatus=document.getElementById('galleryStatus');
 let currentEvent=null, gallerySession=0, uploading=false;
+const photoStorage = window.supabase ? window.supabase.createClient(
+  SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY,
+  {auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}}
+).storage.from(PHOTO_BUCKET) : null;
 function setStatus(message){galleryStatus.textContent=message;}
-
-// Apps Script ContentService cannot be read cross-origin using ordinary fetch.
-// The server returns a JSONP callback for read-only gallery listings.
-function loadPhotoData(event){
-  return new Promise((resolve,reject)=>{
-    const callback='abhishwePhotos_'+Date.now()+'_'+Math.floor(Math.random()*1e8);
-    const script=document.createElement('script');
-    let finished=false;
-    const timer=setTimeout(()=>finish(new Error('Photo gallery timed out.')),18000);
-    function finish(error,data){
-      if(finished)return;
-      finished=true;clearTimeout(timer);delete window[callback];script.remove();
-      if(error)reject(error);else resolve(data);
+async function loadPhotoData(event){
+  if(!photoStorage)throw new Error('Photo service could not load. Please refresh.');
+  const photos=[];
+  // Paginate so the gallery does not stop at the first 100 photos.
+  for(let offset=0; ; offset+=100){
+    const {data,error}=await photoStorage.list(event,{
+      limit:100,offset,sortBy:{column:'created_at',order:'desc'}
+    });
+    if(error)throw error;
+    for(const file of data||[]){
+      if(!file.name || !/\.(jpg|jpeg|png|webp)$/i.test(file.name))continue;
+      const path=event+'/'+file.name;
+      const {data:publicData}=photoStorage.getPublicUrl(path);
+      photos.push({name:file.name,url:publicData.publicUrl,created:file.created_at});
     }
-    window[callback]=data=>finish(null,data);
-    script.onerror=()=>finish(new Error('Could not connect to photo gallery.'));
-    script.src=PHOTO_WEB_APP_URL+'?event='+encodeURIComponent(event)+'&callback='+callback+'&t='+Date.now();
-    document.head.appendChild(script);
-  });
+    if(!data || data.length<100)break;
+  }
+  return photos;
 }
 async function requestPhotos(){
   const event=currentEvent, session=gallerySession;
   if(!event)return;
   setStatus('Loading photos…');
   try{
-    const data=await loadPhotoData(event);
+    const photos=await loadPhotoData(event);
     if(session!==gallerySession)return;
-    if(!data.success)throw new Error(data.error||'Gallery service error');
-    renderPhotos(data.photos||[]);
-  }catch(error){if(session===gallerySession)setStatus(error.message);}
+    renderPhotos(photos);
+  }catch(error){if(session===gallerySession)setStatus('Gallery error: '+(error.message||error));}
 }
 function renderPhotos(photos){
   galleryGrid.replaceChildren();
-  if(!Array.isArray(photos)||!photos.length){setStatus('No photos yet. Be the first to share a memory! ♡');return;}
-  let count=0;
+  if(!photos.length){setStatus('No photos yet. Be the first to share a memory! ♡');return;}
   for(const photo of photos){
-    if(!photo||typeof photo.url!=='string'||!photo.url.startsWith('https://drive.google.com/'))continue;
-    const link=document.createElement('a');link.href=photo.url;link.target='_blank';link.rel='noopener noreferrer';
-    const img=document.createElement('img');img.src=photo.url;img.loading='lazy';img.alt='Shared '+currentEvent+' photo';
-    link.appendChild(img);galleryGrid.appendChild(link);count++;
+    const link=document.createElement('a');
+    link.href=photo.url;link.target='_blank';link.rel='noopener noreferrer';
+    const img=document.createElement('img');
+    img.src=photo.url;img.loading='lazy';img.alt='Shared '+currentEvent+' photo';
+    link.appendChild(img);galleryGrid.appendChild(link);
   }
-  setStatus(count+' photo(s) shared ♡');
+  setStatus(photos.length+' photo(s) shared ♡');
 }
 function openGallery(event,pushHistory=true){
   if(!eventNames[event])return;
@@ -776,52 +780,14 @@ async function preparePhoto(file){
   const bitmap=await createImageBitmap(file);
   const scale=Math.min(1,1200/Math.max(bitmap.width,bitmap.height));
   const canvas=document.createElement('canvas');
-  canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
-  canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();
+  canvas.width=Math.max(1,Math.round(bitmap.width*scale));
+  canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+  canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);
+  bitmap.close();
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.75));
   if(!blob)throw new Error('Unable to prepare photo.');
-  const base64Data=await new Promise((resolve,reject)=>{
-    const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=reject;reader.readAsDataURL(blob);
-  });
-  return {base64Data,mimeType:'image/jpeg'};
+  return blob;
 }
-function submitPhotoForm(data){
-  return new Promise((resolve,reject)=>{
-    const id='photoUploadFrame_'+Date.now()+'_'+Math.random().toString(36).slice(2);
-    const frame=document.createElement('iframe');
-    frame.name=id;
-    frame.title='Photo upload';
-    frame.style.display='none';
-    const form=document.createElement('form');
-    form.method='POST';
-    form.action=PHOTO_WEB_APP_URL;
-    form.target=id;
-    form.enctype='application/x-www-form-urlencoded';
-    form.style.display='none';
-    const field=document.createElement('textarea');
-    field.name='payload';
-    field.value=JSON.stringify(data);
-    form.appendChild(field);
-    document.body.appendChild(frame);
-    document.body.appendChild(form);
-    let submitted=false;
-    const timeout=setTimeout(()=>finish(new Error('Photo upload request timed out.')),30000);
-    function finish(error){
-      clearTimeout(timeout);
-      form.remove();
-      setTimeout(()=>frame.remove(),1000);
-      if(error)reject(error);else resolve();
-    }
-    frame.addEventListener('load',()=>{
-      if(!submitted)return;
-      finish();
-    },{once:false});
-    frame.addEventListener('error',()=>finish(new Error('Could not submit photo upload.')),{once:true});
-    submitted=true;
-    form.submit();
-  });
-}
-function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
 async function uploadFiles(files){
   if(!currentEvent||!files.length||uploading)return;
   uploading=true;
@@ -829,29 +795,31 @@ async function uploadFiles(files){
   document.getElementById('cameraBtn').disabled=true;
   document.getElementById('uploadBtn').disabled=true;
   try{
+    if(!photoStorage)throw new Error('Photo service did not load. Refresh the page.');
     for(let i=0;i<files.length;i++){
       setStatus('Preparing photo '+(i+1)+' of '+files.length+'…');
-      const prepared=await preparePhoto(files[i]);
-      const filename='guest_'+Date.now()+'_'+Math.random().toString(36).slice(2,12)+'.jpg';
+      const blob=await preparePhoto(files[i]);
+      const filename='guest_'+Date.now()+'_'+crypto.randomUUID()+'.jpg';
       setStatus('Uploading photo '+(i+1)+' of '+files.length+'…');
-      // Submit via a normal HTML form into a hidden iframe. This avoids fetch/CORS.
-      // The response is cross-origin, so verify the saved filename via JSONP below.
-      await submitPhotoForm({event,filename,...prepared});
-      let found=false;
-      for(let attempt=0;attempt<12;attempt++){
-        await sleep(2500);
-        const result=await loadPhotoData(event);
-        if(result.success&&Array.isArray(result.photos)&&result.photos.some(p=>p.name===filename)){
-          found=true;
-          if(currentEvent===event&&session===gallerySession)renderPhotos(result.photos);
-          break;
-        }
+      const {error}=await photoStorage.upload(event+'/'+filename,blob,{
+        contentType:'image/jpeg',upsert:false,cacheControl:'3600'
+      });
+      if(error)throw error;
+      if(currentEvent===event&&session===gallerySession){
+        setStatus('Uploaded '+(i+1)+' of '+files.length+' photo(s) ♡');
       }
-      if(!found)throw new Error('Upload could not be confirmed in Google Drive. Check Apps Script Executions; please do not assume the photo was saved.');
     }
-    if(currentEvent===event&&session===gallerySession)setStatus('All photos uploaded and verified! ♡');
-  }catch(error){if(currentEvent===event)setStatus('Upload issue: '+error.message);}
-  finally{uploading=false;document.getElementById('cameraBtn').disabled=false;document.getElementById('uploadBtn').disabled=false;}
+    if(currentEvent===event&&session===gallerySession){
+      await requestPhotos();
+      setStatus('All photos uploaded successfully! ♡');
+    }
+  }catch(error){
+    if(currentEvent===event)setStatus('Upload issue: '+(error.message||error));
+  }finally{
+    uploading=false;
+    document.getElementById('cameraBtn').disabled=false;
+    document.getElementById('uploadBtn').disabled=false;
+  }
 }
 for(const id of ['cameraInput','uploadInput'])document.getElementById(id).addEventListener('change',e=>{uploadFiles(Array.from(e.target.files));e.target.value='';});
 const galleryMatch=location.hash.match(/^#(haldi|wedding|reception)-photos$/);
