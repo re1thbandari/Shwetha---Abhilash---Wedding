@@ -1,211 +1,1062 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#fff0f3">
-<title>Shwetha & Abhilash | #AbhiShweKalyanam</title>
+<meta name="theme-color" content="#f4d7e0">
+<title>Shwetha & Abhilash | AbhiShweKalyanam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-:root{--rose:#cf8ca1;--cream:#fffaf7;--ink:#5d3d4b;--gold:#c9a66b}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
-button,input,select{font:inherit}button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-a{color:inherit}h1,h2,h3{font-family:"Playfair Display",serif;font-weight:400}
-h1{font-size:clamp(3rem,12vw,6rem);line-height:1.16;margin:18px 0}
-h1 em,h2 em{font-family:"Great Vibes",cursive;font-style:normal;color:#b4778d}
-h2{font-size:clamp(2.1rem,8vw,3.6rem);margin:12px 0 22px}
-.eyebrow{letter-spacing:.25em;text-transform:uppercase;font-size:.72rem;font-weight:600}
-.telugu{font-size:1.4rem;color:#ad7e83}
-.btn{display:inline-block;border:1px solid var(--rose);border-radius:100px;padding:15px 27px;text-decoration:none;background:var(--rose);color:white;cursor:pointer;font-weight:600}
-.btn.secondary{background:transparent;color:var(--ink)}
-.btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
-.opening{position:fixed;inset:0;z-index:30;display:grid;place-items:center;overflow:hidden;background:linear-gradient(110deg,#e2a8b9,#f0c4cf 50%,#dca0b4)}
-.opening.opened{pointer-events:none}
-.opening:before,.opening:after{content:"";position:absolute;inset:0 50% 0 0;background:repeating-linear-gradient(90deg,#d08ca1 0,#f0c1ce 16%,#ce889e 33%,#e9b3c3 50%,#bc7b90 65%);box-shadow:inset 0 0 30px #7d3f5640}
-.opening:after{inset:0 0 0 50%}
-.opening-content{position:relative;z-index:2;text-align:center;padding:24px;width:100%;transition:opacity .25s}
-.opening .telugu,.opening .eyebrow{color:white;text-shadow:0 2px 8px #8a526b}
-.opening .btn{background:white;color:#955e72;border-color:white}
-.opening-logo{display:block;max-width:min(68vw,310px);max-height:250px;width:auto;height:auto;object-fit:contain;margin:20px auto;filter:drop-shadow(0 2px 7px #84516a55)}
-.logo-fallback{font-family:"Playfair Display",serif;font-size:clamp(4rem,19vw,7rem);color:#fff9f0}
-.logo-fallback span{font-family:"Great Vibes",cursive;color:#ffe3a6}
-.opening-subtitle{color:white}
-.mandala{position:absolute;z-index:1;left:50%;top:50%;width:120vmax;height:120vmax;max-width:none;transform:translate(-50%,-50%);opacity:.38;pointer-events:none}
-.mandala svg{display:block;width:100%;height:100%}
-.opening.opened .mandala{animation:mandalaSpin 2s linear forwards}
-.opening.opened .opening-content{opacity:0}
-.opening.opened{animation:openingFade 2s ease-in forwards}
-@keyframes mandalaSpin{from{transform:translate(-50%,-50%) rotate(0deg) scale(1)}to{transform:translate(-50%,-50%) rotate(360deg) scale(1.22)}}
-@keyframes openingFade{0%,40%{opacity:1}100%{opacity:0}}
-.music{position:fixed;right:15px;top:16px;z-index:15;border:1px solid #e7b9c6;background:#fffaf7ee;color:#8e566a;border-radius:50px;padding:10px 15px;box-shadow:0 4px 18px #6c42531a}
-.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:90px 22px 65px;background:radial-gradient(ellipse at 50% 35%,#fffaf7 0%,#fae6eb 72%,#f2ccd7 100%)}
-.hero .subtitle{max-width:340px;margin:18px auto;line-height:1.9}
-.date{letter-spacing:.12em;font-size:.83rem}.hashtag{color:#b87d91;font-weight:600}
-.scroll{display:block;margin-top:45px;text-decoration:none;font-size:.85rem}
-.section{padding:85px 24px;text-align:center}
-.section>p,.section>h2{max-width:640px;margin-left:auto;margin-right:auto}
-.story .body{max-width:490px;line-height:2;margin:auto}
-.flower{font-size:2.3rem;color:#c58d9c;margin:28px 0}
-.countdown-section{background:#f9e9ed}
-.countdown{display:flex;justify-content:center;gap:clamp(8px,3vw,24px);max-width:550px;margin:35px auto}
-.countdown div{flex:1;min-width:0;border:1px solid #e8beca;background:#fffaf7b8;border-radius:14px;padding:20px 4px}
-.countdown strong{display:block;font-family:"Playfair Display",serif;font-size:clamp(1.6rem,7vw,3rem);font-weight:400}
-.countdown small{font-size:.6rem;letter-spacing:.1em}
-.event-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1000px;margin:40px auto}
-.event{border:1px solid #eacbd1;border-radius:20px;padding:30px 18px;background:#fff;box-shadow:0 12px 35px #7c52610d}
-.event.haldi{background:#fff9e9;border-color:#e8d6a5}.event.reception{background:#fff8f8}
-.event-icon{font-size:2.6rem}.event h3{font-size:1.7rem}.event .when{font-weight:600}
-.event .where{min-height:50px;line-height:1.6}.event .btn{font-size:.85rem;padding:12px 18px}
-.event-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
-.blessing{background:#f7e1e7}.rsvp .body{max-width:480px;margin:0 auto 25px;line-height:1.8}
-.form{display:grid;gap:13px;max-width:440px;margin:30px auto;text-align:left}
-.form label{font-size:.83rem;font-weight:600}
-.form input,.form select{padding:14px 15px;border:1px solid #e3bac6;border-radius:12px;background:white;color:var(--ink);width:100%}
-.form .btn{margin-top:10px}
-.note{font-size:.8rem;line-height:1.6;color:#826f78}
-.petal-layer{position:fixed;inset:0;pointer-events:none;z-index:9;overflow:hidden}
-.falling-petal{position:absolute;top:-35px;color:#d69bac;opacity:.7;animation:fall linear forwards}
-@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(540deg);opacity:0}}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:none}
-footer{text-align:center;background:#eed4dd;padding:48px 20px;font-size:.8rem}
-footer .names{font-family:"Great Vibes",cursive;font-size:2.8rem;color:#9c6076}
-.gallery-view{display:none;min-height:100svh;background:linear-gradient(#fff4f5,#fffaf7);padding:25px 18px 80px;text-align:center}
-body.gallery-active #invitation,body.gallery-active footer,body.gallery-active .music{display:none}
-body.gallery-active .gallery-view.active{display:block}
-body.gallery-active{overflow-x:hidden}
-.gallery-inner{max-width:920px;margin:auto}
-.back{display:block;text-align:left;background:transparent;border:0;color:#925a72;padding:14px 0;font-weight:700;cursor:pointer}
-.gallery-view h1{font-size:clamp(2.5rem,10vw,4rem)}
-.gallery-message{max-width:590px;line-height:1.85;margin:20px auto 30px}
-.gallery-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.gallery-actions .btn{min-width:145px}
-.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:30px}
-.photo{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;background:#f0dce3;cursor:pointer}
-.gallery-status{min-height:25px;margin:20px 0}
-.gallery-view input[type=file]{display:none}
-#photoBridge{position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none}
-@media(min-width:700px){.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:760px){.event-grid{grid-template-columns:1fr;max-width:430px}.section{padding:70px 20px}.event .where{min-height:0}}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+:root {
+  --pink:#d08ca2;
+  --light:#fff8f8;
+  --ink:#603f50;
+  --gold:#c9a66c;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:var(--light);
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+button,input,select {font:inherit}
+button,a {-webkit-tap-highlight-color:transparent}
+button {cursor:pointer}
+h1,h2,h3 {font-family:"Playfair Display",serif;font-weight:400}
+h1 {font-size:clamp(3rem,11vw,6rem);line-height:1.15}
+h2 {font-size:clamp(2.1rem,7vw,3.6rem)}
+h1 em,h2 em {
+  font-family:"Great Vibes",cursive;
+  color:#ae7187;
+  font-style:normal;
+}
+.eyebrow {
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.telugu {font-size:24px}
+.btn {
+  display:inline-block;
+  padding:14px 24px;
+  border:1px solid var(--pink);
+  border-radius:40px;
+  background:var(--pink);
+  color:white;
+  font-weight:600;
+  text-decoration:none;
+}
+.btn.secondary {background:transparent;color:var(--ink)}
+.btn:disabled {opacity:.55;cursor:wait}
+
+/* OPENING */
+.opening {
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:linear-gradient(110deg,#dda7b9,#f0c4d0,#dba1b4);
+  isolation:isolate;
+}
+.opening::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    90deg,
+    #c88499 0,
+    #eebdca 12%,
+    #c9869d 24%,
+    #eab4c5 36%,
+    #b8788e 48%
+  );
+  opacity:.5;
+}
+.mandala {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:120vmax;
+  height:120vmax;
+  transform:translate3d(-50%,-50%,0);
+  opacity:.42;
+  will-change:transform;
+  pointer-events:none;
+}
+.mandala svg {width:100%;height:100%}
+.opening-content {
+  position:relative;
+  z-index:2;
+  text-align:center;
+  width:100%;
+  padding:20px;
+  color:white;
+}
+.opening-content .eyebrow {margin:25px 0}
+.opening-logo {
+  width:min(75vw,350px);
+  max-height:270px;
+  object-fit:contain;
+  display:block;
+  margin:20px auto;
+}
+.logo-fallback {
+  font-family:"Playfair Display",serif;
+  font-size:85px;
+  color:#fff4e6;
+}
+.opening-content .btn {
+  background:white;
+  color:#91566d;
+  border-color:white;
+  margin-top:12px;
+}
+.opening.opened {
+  pointer-events:none;
+  animation:openingFade 2s linear forwards;
+}
+.opening.opened .mandala {
+  animation:mandalaSpin 2s linear forwards;
+}
+.opening.opened .opening-content {
+  animation:contentFade .35s ease forwards;
+}
+@keyframes mandalaSpin {
+  from {transform:translate3d(-50%,-50%,0) rotate(0deg) scale(1)}
+  to {transform:translate3d(-50%,-50%,0) rotate(360deg) scale(1.2)}
+}
+@keyframes openingFade {
+  0%,35% {opacity:1}
+  100% {opacity:0}
+}
+@keyframes contentFade {to {opacity:0}}
+
+/* INVITATION */
+.music {
+  position:fixed;
+  top:16px;
+  right:15px;
+  z-index:15;
+  border:1px solid #e7bac6;
+  border-radius:30px;
+  background:#fffaf7ed;
+  color:#92576c;
+  padding:10px 15px;
+}
+.hero {
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:80px 24px;
+  background:radial-gradient(
+    ellipse at 50% 30%,
+    #fffaf7 0%,
+    #fae5eb 70%,
+    #f1cbd7 100%
+  );
+}
+.hero .subtitle {
+  max-width:390px;
+  margin:20px auto;
+  line-height:1.9;
+}
+.hashtag {color:#b67b91;font-weight:700}
+.flower {font-size:35px;color:#c58d9c;margin:25px}
+.section {padding:85px 22px;text-align:center}
+.section>p {max-width:600px;margin-left:auto;margin-right:auto;line-height:1.8}
+.story {background:#fffaf7}
+.countdown-section {background:#f9e9ed}
+.countdown {
+  display:flex;
+  gap:10px;
+  max-width:550px;
+  margin:35px auto;
+}
+.countdown div {
+  flex:1;
+  min-width:0;
+  border:1px solid #e8beca;
+  border-radius:14px;
+  background:#ffffffa8;
+  padding:18px 3px;
+}
+.countdown strong {
+  display:block;
+  font-family:"Playfair Display",serif;
+  font-size:clamp(23px,6vw,44px);
+  font-weight:400;
+}
+.countdown small {font-size:10px}
+.event-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  max-width:1000px;
+  margin:40px auto;
+}
+.event {
+  padding:30px 18px;
+  background:white;
+  border:1px solid #e9c8d2;
+  border-radius:20px;
+}
+.event.haldi {background:#fff9e9}
+.event.reception {background:#fff8f8}
+.event h3 {font-size:28px}
+.event-icon {font-size:40px}
+.event .where {line-height:1.7;min-height:60px}
+.event-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-top:20px;
+}
+.blessing {background:#f7e1e7}
+.form {
+  display:grid;
+  gap:13px;
+  max-width:440px;
+  margin:30px auto;
+  text-align:left;
+}
+.form label {font-size:14px;font-weight:600}
+.form input,.form select {
+  width:100%;
+  padding:14px;
+  border:1px solid #e3bac6;
+  border-radius:12px;
+  background:white;
+}
+.note {font-size:13px;color:#8b6d7a;line-height:1.7}
+footer {
+  text-align:center;
+  background:#eed4dd;
+  padding:45px 20px;
+}
+footer .names {
+  font-family:"Great Vibes",cursive;
+  font-size:44px;
+}
+.petal-layer {
+  position:fixed;
+  inset:0;
+  z-index:9;
+  pointer-events:none;
+  overflow:hidden;
+}
+.petal {
+  position:absolute;
+  top:-30px;
+  color:#d69bac;
+  animation:fall linear forwards;
+}
+@keyframes fall {
+  to {transform:translate3d(var(--drift),110vh,0) rotate(540deg);opacity:0}
+}
+
+/* SEPARATE PHOTO PAGES */
+.gallery-page {
+  display:none;
+  min-height:100svh;
+  padding:24px 18px 70px;
+  background:linear-gradient(#fff0f4,#fffaf7);
+  text-align:center;
+}
+body.gallery-active #invitation {display:none}
+body.gallery-active .gallery-page.active {display:block}
+.gallery-inner {max-width:950px;margin:auto}
+.back {
+  display:block;
+  padding:15px 0;
+  background:none;
+  border:none;
+  color:#925a72;
+  font-weight:700;
+}
+.gallery-page h1 {font-size:clamp(38px,9vw,64px)}
+.gallery-message {
+  max-width:600px;
+  margin:20px auto 30px;
+  line-height:1.9;
+}
+.gallery-actions {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+}
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin:28px auto;
+}
+.gallery-grid a {display:block}
+.gallery-grid img {
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:14px;
+  background:#f0dce3;
+}
+.gallery-status {margin:20px 0;min-height:25px}
+.hidden-input {display:none}
+#photoBridge {
+  position:absolute;
+  width:0;
+  height:0;
+  border:0;
+  opacity:0;
+  pointer-events:none;
+}
+@media(min-width:700px) {
+  .gallery-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px) {
+  .event-grid {grid-template-columns:1fr;max-width:440px}
+  .section {padding:70px 20px}
+  .event .where {min-height:0}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+}
 </style>
 </head>
+
 <body>
+
 <div class="opening" id="opening">
   <div class="mandala" aria-hidden="true">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#b58c4e">
-      <circle cx="200" cy="200" r="180" stroke-width="2"/><circle cx="200" cy="200" r="165" stroke-width="1.2"/><circle cx="200" cy="200" r="120" stroke-width="1.2"/>
-      <g id="petalshape"><ellipse cx="200" cy="104" rx="42" ry="95" stroke-width="2"/><path d="M200 20 Q220 100 200 200" stroke-width="1"/></g>
-      <use href="#petalshape" transform="rotate(30 200 200)"/><use href="#petalshape" transform="rotate(60 200 200)"/><use href="#petalshape" transform="rotate(90 200 200)"/><use href="#petalshape" transform="rotate(120 200 200)"/><use href="#petalshape" transform="rotate(150 200 200)"/><use href="#petalshape" transform="rotate(180 200 200)"/><use href="#petalshape" transform="rotate(210 200 200)"/><use href="#petalshape" transform="rotate(240 200 200)"/><use href="#petalshape" transform="rotate(270 200 200)"/><use href="#petalshape" transform="rotate(300 200 200)"/><use href="#petalshape" transform="rotate(330 200 200)"/>
+    <svg viewBox="0 0 400 400" fill="none" stroke="#b58c4e" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="180" stroke-width="2"/>
+      <circle cx="200" cy="200" r="165"/>
+      <circle cx="200" cy="200" r="120"/>
+      <g id="petalShape">
+        <ellipse cx="200" cy="105" rx="42" ry="95" stroke-width="2"/>
+      </g>
+      <use href="#petalShape" transform="rotate(30 200 200)"/>
+      <use href="#petalShape" transform="rotate(60 200 200)"/>
+      <use href="#petalShape" transform="rotate(90 200 200)"/>
+      <use href="#petalShape" transform="rotate(120 200 200)"/>
+      <use href="#petalShape" transform="rotate(150 200 200)"/>
+      <use href="#petalShape" transform="rotate(180 200 200)"/>
+      <use href="#petalShape" transform="rotate(210 200 200)"/>
+      <use href="#petalShape" transform="rotate(240 200 200)"/>
+      <use href="#petalShape" transform="rotate(270 200 200)"/>
+      <use href="#petalShape" transform="rotate(300 200 200)"/>
+      <use href="#petalShape" transform="rotate(330 200 200)"/>
     </svg>
   </div>
+
   <div class="opening-content">
-    <p class="telugu">శుభ వివాహం</p><p class="eyebrow">You're invited</p>
-    <img class="opening-logo" src="sa-royal-lotus-logo.png" alt="S and A wedding logo" onerror="this.style.display='none';document.getElementById('logoFallback').hidden=false">
-    <div class="logo-fallback" id="logoFallback" hidden>S <span>&</span> A</div>
-    <p class="opening-subtitle">A beautiful beginning awaits</p>
-    <button class="btn" id="openBtn" type="button">Open invitation ↗</button>
+    <p class="telugu">శుభ వివాహం</p>
+    <p class="eyebrow">You're Invited</p>
+    <img
+      class="opening-logo"
+      src="sa-royal-lotus-logo.png"
+      alt="S and A wedding logo"
+      onerror="this.style.display='none';document.getElementById('logoFallback').hidden=false"
+    >
+    <div id="logoFallback" class="logo-fallback" hidden>S &amp; A</div>
+    <p>A beautiful beginning awaits</p>
+    <button class="btn" id="openBtn">Open invitation ↗</button>
   </div>
 </div>
+
 <div id="invitation">
-<button class="music" id="musicBtn" type="button">♫ Music off</button>
-<audio id="bgMusic" src="Meghaallo.mp3" preload="none" loop></audio>
-<div class="petal-layer" id="petals" aria-hidden="true"></div>
-<main>
-<section class="hero" id="home"><div><p class="telugu reveal">శుభ వివాహం</p><p class="eyebrow reveal">Together with our families</p><h1 class="reveal">Shwetha <em>&</em><br>Abhilash</h1><div class="flower reveal">❀</div><p class="subtitle reveal">With joy in our hearts, we invite you to celebrate our wedding and the beginning of our forever.</p><p class="date reveal">FRIDAY · 20 NOVEMBER 2026</p><p class="hashtag reveal">#AbhiShweKalyanam</p><a class="scroll reveal" href="#story">Discover our celebrations ↓</a></div></section>
-<section class="section story" id="story"><p class="eyebrow reveal">A beautiful beginning</p><h2 class="reveal">Two hearts, <em>one forever</em></h2><p class="body reveal">With the blessings of our loved ones and the warmth of tradition, we begin our next chapter together. Your presence will make our celebrations even more special.</p><div class="flower reveal">✿ ❀ ✿</div></section>
-<section class="section countdown-section"><p class="eyebrow reveal">Counting every moment</p><h2 class="reveal">Until our <em>Muhurtham</em></h2><div class="countdown reveal"><div><strong id="days">--</strong><small>DAYS</small></div><div><strong id="hours">--</strong><small>HOURS</small></div><div><strong id="minutes">--</strong><small>MINUTES</small></div><div><strong id="seconds">--</strong><small>SECONDS</small></div></div><p id="countdownMsg">20 November 2026 · 10:30 AM IST</p></section>
-<section class="section events" id="events"><p class="eyebrow reveal">Save the dates</p><h2 class="reveal">Our wedding <em>celebrations</em></h2>
-<div class="event-grid">
-<article class="event haldi reveal"><div class="event-icon">🌼</div><p class="eyebrow">Monday · 16 November</p><h3>Haldi</h3><p class="when">7:00 PM</p><p class="where">Near Home</p><p class="note">A golden evening of blessings and laughter</p><div class="event-actions"><button class="btn" data-gallery="haldi" type="button">Haldi Photos ↗</button></div></article>
-<article class="event reveal"><div class="event-icon">💍</div><p class="eyebrow">Friday · 20 November</p><h3>Wedding Muhurtham</h3><p class="when">10:30 AM</p><p class="where">Sri Durga Garden<br>Sadashivpet, Telangana</p><div class="event-actions"><a class="btn secondary" href="https://maps.app.goo.gl/d1aZyvhSfPYtBdq18?g_st=ac" target="_blank" rel="noopener noreferrer">Get directions ↗</a><button class="btn" data-gallery="wedding" type="button">Wedding Photos ↗</button></div></article>
-<article class="event reception reveal"><div class="event-icon">✨</div><p class="eyebrow">Sunday · 22 November</p><h3>Reception</h3><p class="when">Time to be announced</p><p class="where">Venue to be announced</p><p class="note">Details will be shared soon</p><div class="event-actions"><button class="btn" data-gallery="reception" type="button">Reception Photos ↗</button></div></article>
-</div></section>
-<section class="section blessing"><p class="telugu reveal">కల్యాణం కమనీయం</p><h2 class="reveal">With love, <em>and blessings</em></h2><p class="reveal">Your presence is the most beautiful gift.</p><div class="flower reveal">❀</div></section>
-<section class="section rsvp" id="rsvp"><p class="eyebrow reveal">We hope to see you</p><h2 class="reveal">Celebrate <em>with us</em></h2><p class="body reveal">Please let us know which celebrations you will attend.</p>
-<form class="form reveal" id="rsvpForm"><label for="guestName">Your name</label><input id="guestName" required maxlength="100" placeholder="Enter your name"><label for="attending">Attendance</label><select id="attending"><option value="Yes">Joyfully accepts</option><option value="No">Regretfully declines</option></select><label for="guests">Number of guests</label><input id="guests" type="number" min="0" max="20" value="1" required><label for="functions">Celebration</label><select id="functions"><option>Wedding</option><option>Haldi</option><option>Reception</option><option>Haldi & Wedding</option><option>Wedding & Reception</option><option>All three</option><option>None</option></select><button class="btn" type="submit" id="rsvpSubmit">Save RSVP & open WhatsApp ↗</button><p id="rsvpStatus" class="note" role="status" aria-live="polite"></p></form>
+  <button class="music" id="musicBtn">♫ Music off</button>
+  <audio id="bgMusic" src="Meghaallo.mp3" loop preload="none"></audio>
+  <div class="petal-layer" id="petals"></div>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <p class="telugu">శుభ వివాహం</p>
+        <p class="eyebrow">Together with our families</p>
+        <h1>Shwetha <em>&</em><br>Abhilash</h1>
+        <div class="flower">❀</div>
+        <p class="subtitle">
+          With joy in our hearts, we invite you to celebrate
+          our wedding and the beginning of our forever.
+        </p>
+        <p class="eyebrow">Friday · 20 November 2026</p>
+        <p class="hashtag">#AbhiShweKalyanam</p>
+        <p><a href="#story">Discover our celebrations ↓</a></p>
+      </div>
+    </section>
+
+    <section class="section story" id="story">
+      <p class="eyebrow">A beautiful beginning</p>
+      <h2>Two hearts, <em>one forever</em></h2>
+      <p>
+        With the blessings of our loved ones and the warmth
+        of tradition, we begin our next chapter together.
+        Your presence will make our celebrations even more special.
+      </p>
+      <div class="flower">✿ ❀ ✿</div>
+    </section>
+
+    <section class="section countdown-section">
+      <p class="eyebrow">Counting every moment</p>
+      <h2>Until our <em>Muhurtham</em></h2>
+      <div class="countdown">
+        <div><strong id="days">--</strong><small>DAYS</small></div>
+        <div><strong id="hours">--</strong><small>HOURS</small></div>
+        <div><strong id="minutes">--</strong><small>MINUTES</small></div>
+        <div><strong id="seconds">--</strong><small>SECONDS</small></div>
+      </div>
+      <p id="countdownMsg">20 November 2026 · 10:30 AM IST</p>
+    </section>
+
+    <section class="section events" id="events">
+      <p class="eyebrow">Save the dates</p>
+      <h2>Our wedding <em>celebrations</em></h2>
+
+      <div class="event-grid">
+        <article class="event haldi">
+          <div class="event-icon">🌼</div>
+          <p class="eyebrow">Monday · 16 November</p>
+          <h3>Haldi</h3>
+          <p><strong>7:00 PM</strong></p>
+          <p class="where">Near Home</p>
+          <p class="note">A golden evening of blessings and laughter</p>
+          <div class="event-actions">
+            <button class="btn" data-gallery="haldi">Haldi Photos ↗</button>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="event-icon">💍</div>
+          <p class="eyebrow">Friday · 20 November</p>
+          <h3>Wedding Muhurtham</h3>
+          <p><strong>10:30 AM</strong></p>
+          <p class="where">Sri Durga Garden<br>Sadashivpet, Telangana</p>
+          <div class="event-actions">
+            <a
+              class="btn secondary"
+              href="https://maps.app.goo.gl/d1aZyvhSfPYtBdq18?g_st=ac"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Get directions ↗</a>
+            <button class="btn" data-gallery="wedding">Wedding Photos ↗</button>
+          </div>
+        </article>
+
+        <article class="event reception">
+          <div class="event-icon">✨</div>
+          <p class="eyebrow">Sunday · 22 November</p>
+          <h3>Reception</h3>
+          <p><strong>Time to be announced</strong></p>
+          <p class="where">Venue to be announced</p>
+          <p class="note">Details will be shared soon</p>
+          <div class="event-actions">
+            <button class="btn" data-gallery="reception">Reception Photos ↗</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section blessing">
+      <p class="telugu">కల్యాణం కమనీయం</p>
+      <h2>With love, <em>and blessings</em></h2>
+      <p>Your presence is the most beautiful gift.</p>
+      <div class="flower">❀</div>
+    </section>
+
+    <section class="section rsvp" id="rsvp">
+      <p class="eyebrow">We hope to see you</p>
+      <h2>Celebrate <em>with us</em></h2>
+      <p>Please let us know which celebrations you will attend.</p>
+
+      <form class="form" id="rsvpForm">
+        <label for="guestName">Your name</label>
+        <input id="guestName" required maxlength="100" placeholder="Enter your name">
+
+        <label for="attending">Attendance</label>
+        <select id="attending">
+          <option value="Yes">Joyfully accepts</option>
+          <option value="No">Regretfully declines</option>
+        </select>
+
+        <label for="guests">Number of guests</label>
+        <input id="guests" type="number" min="0" max="20" value="1" required>
+
+        <label for="functions">Celebration</label>
+        <select id="functions">
+          <option>Wedding</option>
+          <option>Haldi</option>
+          <option>Reception</option>
+          <option>Haldi & Wedding</option>
+          <option>Wedding & Reception</option>
+          <option>All three</option>
+          <option>None</option>
+        </select>
+
+        <button class="btn" id="rsvpSubmit" type="submit">
+          Save RSVP & open WhatsApp ↗
+        </button>
+        <p class="note" id="rsvpStatus" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="names">Shwetha & Abhilash</div>
+    <p>20 · 11 · 2026</p>
+    <p>#AbhiShweKalyanam</p>
+    <p>Made with love ♡</p>
+  </footer>
+</div>
+
+<!-- Only one gallery opens at a time -->
+<section class="gallery-page" id="galleryPage">
+  <div class="gallery-inner">
+    <button class="back" id="backBtn">← Back to Celebrations</button>
+    <p class="eyebrow">Our cherished memories</p>
+    <h1 id="galleryTitle">Haldi Photos</h1>
+
+    <p class="gallery-message" id="galleryMessage"></p>
+
+    <div class="gallery-actions">
+      <button class="btn" id="cameraBtn">📷 Take Photo</button>
+      <button class="btn secondary" id="uploadBtn">↑ Upload Photos</button>
+    </div>
+
+    <input class="hidden-input" type="file" id="cameraInput" accept="image/*" capture="environment">
+    <input class="hidden-input" type="file" id="uploadInput" accept="image/*" multiple>
+
+    <p class="note gallery-status" id="galleryStatus" role="status" aria-live="polite"></p>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
 </section>
-</main>
-<footer><div class="names">Shwetha & Abhilash</div><p>20 · 11 · 2026</p><p>#AbhiShweKalyanam</p><p>Made with love ♡</p></footer>
-</div>
-<div class="gallery-view" id="galleryView"><div class="gallery-inner">
-<button class="back" id="backToInvitation" type="button">← Back to Celebrations</button>
-<p class="eyebrow">Our cherished memories</p><h1 id="galleryTitle">Haldi Photos</h1>
-<p class="gallery-message" id="galleryMessage"></p>
-<div class="gallery-actions">
-<button class="btn" id="cameraBtn" type="button">📷 Take Photo</button>
-<button class="btn secondary" id="uploadBtn" type="button">↑ Upload Photos</button>
-</div>
-<input id="cameraInput" type="file" accept="image/*" capture="environment">
-<input id="uploadInput" type="file" accept="image/*" multiple>
-<p class="note gallery-status" id="galleryStatus" role="status" aria-live="polite"></p>
-<div class="gallery-grid" id="galleryGrid"></div>
-</div></div>
-<iframe id="photoBridge" title="Photo upload service" aria-hidden="true"></iframe>
+
+<iframe id="photoBridge" title="Wedding photo service"></iframe>
+
 <script>
 "use strict";
-// Google Sheets RSVP (existing account) and WhatsApp settings
-const SHEETS_WEB_APP_URL='https://script.google.com/macros/s/AKfycbyx9mT9Z7WeD-xB6MrsNt2zI9I5a1Q4krIp6GtZ-fJHe0SjECf-zd6OxLmAWxU6E7Bfsg/exec';
-const HOST_WHATSAPP='919515282274';
-// New Google Drive photo account: Google Apps Script Bridge.html deployment
-const PHOTO_WEB_APP_URL='https://script.google.com/macros/s/AKfycbxzO4_jFrFdVQGYzdzURFhBn_ygPMFNBfw4RzhBo5CHU3lUKDJfzLBowquJkPtbEC0svQ/exec';
-const opening=document.getElementById('opening'),music=document.getElementById('bgMusic'),musicBtn=document.getElementById('musicBtn');
-music.volume=.45;
-function updateMusic(){musicBtn.textContent=music.paused?'♫ Music off':'♫ Music on'}
-let petalsStarted=false;
-function makePetal(){const p=document.createElement('span');p.className='falling-petal';p.textContent=Math.random()>.5?'❀':'✿';p.style.left=Math.random()*100+'vw';p.style.fontSize=(12+Math.random()*17)+'px';p.style.setProperty('--drift',(Math.random()*220-110)+'px');p.style.animationDuration=(5+Math.random()*5)+'s';document.getElementById('petals').appendChild(p);setTimeout(()=>p.remove(),11000)}
-function startPetals(){if(petalsStarted)return;petalsStarted=true;for(let i=0;i<12;i++)setTimeout(makePetal,i*170);setInterval(makePetal,800)}
-document.getElementById('openBtn').addEventListener('click',function(){this.disabled=true;opening.classList.add('opened');startPetals();music.play().then(updateMusic).catch(updateMusic);setTimeout(()=>opening.remove(),2050)});
-musicBtn.addEventListener('click',()=>{if(music.paused)music.play().then(updateMusic).catch(()=>alert('Music file unavailable. Check Meghaallo.mp3.'));else{music.pause();updateMusic()}});
-music.addEventListener('pause',updateMusic);music.addEventListener('play',updateMusic);
-const wedding=new Date('2026-11-20T10:30:00+05:30').getTime();
-function countdown(){let diff=Math.max(0,wedding-Date.now());const days=Math.floor(diff/86400000);diff%=86400000;const hours=Math.floor(diff/3600000);diff%=3600000;const mins=Math.floor(diff/60000);const secs=Math.floor(diff%60000/1000);for(const [id,val] of [['days',days],['hours',hours],['minutes',mins],['seconds',secs]])document.getElementById(id).textContent=String(val).padStart(2,'0');if(wedding<=Date.now())document.getElementById('countdownMsg').textContent='The celebrations have begun! ♡'}
-countdown();setInterval(countdown,1000);
-if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
-document.getElementById('rsvpForm').addEventListener('submit',async e=>{
- e.preventDefault();const button=document.getElementById('rsvpSubmit'),status=document.getElementById('rsvpStatus');
- const name=document.getElementById('guestName').value.trim(),attendance=document.getElementById('attending').value,guests=Number(document.getElementById('guests').value),functions=document.getElementById('functions').value;
- if(!name||!Number.isInteger(guests)||guests<0||guests>20||(attendance==='Yes'&&guests<1)){status.textContent='Please check your name and guest count.';return}
- button.disabled=true;status.textContent='Sending RSVP for recording…';
- try{await fetch(SHEETS_WEB_APP_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({name,attendance,guests,functions})});
- const message=`RSVP — Shwetha & Abhilash\nName: ${name}\nAttendance: ${attendance}\nGuests: ${guests}\nFunctions: ${functions}`;
- const url='https://wa.me/'+HOST_WHATSAPP+'?text='+encodeURIComponent(message);
- status.textContent='RSVP sent for recording (not yet verified). Please send your WhatsApp confirmation.';
- let link=document.getElementById('whatsappRsvpLink');if(!link){link=document.createElement('a');link.id='whatsappRsvpLink';link.className='btn';link.target='_blank';link.rel='noopener noreferrer';link.textContent='Send RSVP on WhatsApp ↗';status.after(link)}link.href=url;link.style.display='inline-block';
- }catch(err){status.textContent='Could not send RSVP. Check your connection and retry.'}finally{button.disabled=false}
+
+/* EXISTING CONNECTIONS */
+const SHEETS_WEB_APP_URL =
+'https://script.google.com/macros/s/AKfycbyx9mT9Z7WeD-xB6MrsNt2zI9I5a1Q4krIp6GtZ-fJHe0SjECf-zd6OxLmAWxU6E7Bfsg/exec';
+
+const HOST_WHATSAPP = '919515282274';
+
+const PHOTO_WEB_APP_URL =
+'https://script.google.com/macros/s/AKfycbxzO4_jFrFdVQGYzdzURFhBn_ygPMFNBfw4RzhBo5CHU3lUKDJfzLBowquJkPtbEC0svQ/exec';
+
+/* OPENING */
+const opening = document.getElementById('opening');
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+music.volume = .45;
+
+function updateMusic() {
+  musicBtn.textContent = music.paused ? '♫ Music off' : '♫ Music on';
+}
+
+let petalsStarted = false;
+
+function makePetal() {
+  const p = document.createElement('span');
+  p.className = 'petal';
+  p.textContent = Math.random() > .5 ? '❀' : '✿';
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.fontSize = 12 + Math.random() * 17 + 'px';
+  p.style.setProperty('--drift', Math.random() * 220 - 110 + 'px');
+  p.style.animationDuration = 5 + Math.random() * 5 + 's';
+  document.getElementById('petals').appendChild(p);
+  setTimeout(() => p.remove(), 11000);
+}
+
+function startPetals() {
+  if (petalsStarted) return;
+  petalsStarted = true;
+  for (let i = 0; i <12; i++) setTimeout(makePetal, i * 170);
+  setInterval(makePetal, 800);
+}
+
+document.getElementById('openBtn').addEventListener('click', function () {
+  this.disabled = true;
+  opening.classList.add('opened');
+  startPetals();
+  music.play().then(updateMusic).catch(updateMusic);
+  setTimeout(() => opening.remove(), 2050);
 });
-// Dedicated event gallery pages
-const eventNames={haldi:'Haldi',wedding:'Wedding',reception:'Reception'};
-let currentEvent=null,bridgeReady=false,pendingMessages=[],gallerySequence=0;
-const bridge=document.getElementById('photoBridge'),galleryStatus=document.getElementById('galleryStatus'),galleryGrid=document.getElementById('galleryGrid');
-bridge.addEventListener('load',()=>{bridgeReady=true;for(const msg of pendingMessages)sendBridge(msg);pendingMessages=[]});
-bridge.src=PHOTO_WEB_APP_URL;
-function sendBridge(msg){if(!bridgeReady){pendingMessages.push(msg);return}bridge.contentWindow.postMessage({source:'AbhiShweKalyanamWebsite',...msg},'*')}
-function loadPhotos(){if(!currentEvent)return;galleryStatus.textContent='Loading photos…';sendBridge({action:'getPhotos',event:currentEvent})}
-function renderPhotos(photos){galleryGrid.replaceChildren();if(!Array.isArray(photos)||!photos.length){galleryStatus.textContent='No photos yet. Be the first to share a memory!';return}
-galleryStatus.textContent=photos.length+' photo'+(photos.length===1?'':'s')+' shared';
-for(const photo of photos){if(typeof photo.url!=='string'||!photo.url.startsWith('https://drive.google.com/'))continue;const a=document.createElement('a');a.href=photo.url;a.target='_blank';a.rel='noopener noreferrer';const img=document.createElement('img');img.className='photo';img.src=photo.url;img.loading='lazy';img.alt=eventNames[currentEvent]+' guest memory';a.append(img);galleryGrid.append(a)}}
-window.addEventListener('message',e=>{if(e.source!==bridge.contentWindow)return;const d=e.data||{};if(d.source!=='AbhiShweKalyanamPhotos')return;if(d.event&&d.event!==currentEvent)return;
-if(d.action==='photosLoaded')renderPhotos(d.photos);
-else if(d.action==='photoUploaded'){galleryStatus.textContent='Photo uploaded! Refreshing gallery…';loadPhotos()}
-else if(d.action==='error')galleryStatus.textContent='Photo service error: '+(d.message||'Please try again')});
-function openGallery(event,push=true){if(!eventNames[event])return;currentEvent=event;gallerySequence++;document.body.classList.add('gallery-active');document.getElementById('galleryView').classList.add('active');document.getElementById('galleryTitle').textContent=eventNames[event]+' Photos';document.getElementById('galleryMessage').textContent='We would love to know that you attended our '+eventNames[event]+' celebration and shared your blessings with us. Please take a photo or upload your favourite memories here. ♡';galleryGrid.replaceChildren();window.scrollTo(0,0);if(push)history.pushState({gallery:event},'',location.pathname+location.search+'#'+event+'-photos');loadPhotos()}
-function closeGallery(fromPop=false){currentEvent=null;gallerySequence++;document.body.classList.remove('gallery-active');document.getElementById('galleryView').classList.remove('active');galleryGrid.replaceChildren();if(!fromPop&&history.state&&history.state.gallery)history.back();else if(!fromPop)history.replaceState({},'',location.pathname+location.search+'#events');setTimeout(()=>document.getElementById('events').scrollIntoView(),20)}
-document.querySelectorAll('[data-gallery]').forEach(b=>b.addEventListener('click',()=>openGallery(b.dataset.gallery)));
-document.getElementById('backToInvitation').addEventListener('click',()=>closeGallery());
-window.addEventListener('popstate',e=>{if(e.state&&e.state.gallery)openGallery(e.state.gallery,false);else if(currentEvent)closeGallery(true)});
-document.getElementById('cameraBtn').addEventListener('click',()=>document.getElementById('cameraInput').click());
-document.getElementById('uploadBtn').addEventListener('click',()=>document.getElementById('uploadInput').click());
-async function preparePhoto(file){if(!file.type.startsWith('image/'))throw Error('Please select an image.');
-// Resize/compress large phone photos before passing them to Apps Script.
-const bitmap=await createImageBitmap(file);const scale=Math.min(1,1600/Math.max(bitmap.width,bitmap.height));const canvas=document.createElement('canvas');canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();
-const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.82));if(!blob)throw Error('Could not process photo.');
-const base64Data=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=reject;reader.readAsDataURL(blob)});
-return{filename:(file.name||'photo').replace(/\.[^.]+$/,'')+'.jpg',base64Data,mimeType:'image/jpeg'}}
-async function uploadSelected(files){const event=currentEvent;if(!event||!files.length)return;let count=0;for(const file of files){if(currentEvent!==event)break;galleryStatus.textContent='Preparing photo '+(count+1)+' of '+files.length+'…';try{const data=await preparePhoto(file);sendBridge({action:'uploadPhoto',event,...data});count++}catch(err){galleryStatus.textContent=err.message;return}}galleryStatus.textContent='Sending '+count+' photo(s)… Photos will appear after upload completes.'}
-document.getElementById('cameraInput').addEventListener('change',e=>{uploadSelected([...e.target.files]);e.target.value=''});
-document.getElementById('uploadInput').addEventListener('change',e=>{uploadSelected([...e.target.files]);e.target.value=''});
+
+musicBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play().then(updateMusic).catch(() => {
+      alert('Please check that Meghaallo.mp3 is uploaded.');
+    });
+  } else {
+    music.pause();
+    updateMusic();
+  }
+});
+
+music.addEventListener('play', updateMusic);
+music.addEventListener('pause', updateMusic);
+
+/* COUNTDOWN */
+const wedding = new Date('2026-11-20T10:30:00+05:30').getTime();
+
+function updateCountdown() {
+  let diff = Math.max(0, wedding - Date.now());
+  const days = Math.floor(diff / 86400000);
+  diff %= 86400000;
+  const hours = Math.floor(diff / 3600000);
+  diff %= 3600000;
+  const minutes = Math.floor(diff / 60000);
+  const seconds = Math.floor(diff % 60000 / 1000);
+
+  for (const [id,value] of [
+    ['days',days],
+    ['hours',hours],
+    ['minutes',minutes],
+    ['seconds',seconds]
+  ]) {
+    document.getElementById(id).textContent =
+      String(value).padStart(2,'0');
+  }
+
+  if (Date.now() >= wedding) {
+    document.getElementById('countdownMsg').textContent =
+      'The celebrations have begun! ♡';
+  }
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* RSVP */
+document.getElementById('rsvpForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const name = document.getElementById('guestName').value.trim();
+  const attendance = document.getElementById('attending').value;
+  const guests = Number(document.getElementById('guests').value);
+  const functions = document.getElementById('functions').value;
+  const status = document.getElementById('rsvpStatus');
+  const button = document.getElementById('rsvpSubmit');
+
+  if (!name || !Number.isInteger(guests) || guests < 0 || guests > 20 ||
+      (attendance === 'Yes' && guests < 1)) {
+    status.textContent = 'Please check your name and guest count.';
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = 'Sending RSVP for recording…';
+
+  try {
+    await fetch(SHEETS_WEB_APP_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({name,attendance,guests,functions})
+    });
+
+    const message =
+      `RSVP — Shwetha & Abhilash\n` +
+      `Name: ${name}\nAttendance: ${attendance}\n` +
+      `Guests: ${guests}\nFunctions: ${functions}`;
+
+    const url =
+      'https://wa.me/' + HOST_WHATSAPP +
+      '?text=' + encodeURIComponent(message);
+
+    status.textContent =
+      'RSVP submitted for recording. Please confirm on WhatsApp.';
+
+    let link = document.getElementById('whatsappRsvpLink');
+    if (!link) {
+      link = document.createElement('a');
+      link.id = 'whatsappRsvpLink';
+      link.className = 'btn';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'Send on WhatsApp ↗';
+      status.after(link);
+    }
+    link.href = url;
+    link.style.display = 'inline-block';
+  } catch (error) {
+    status.textContent = 'Could not send RSVP. Please try again.';
+  } finally {
+    button.disabled = false;
+  }
+});
+
+/* PHOTO GALLERY */
+const eventNames = {
+  haldi:'Haldi',
+  wedding:'Wedding',
+  reception:'Reception'
+};
+
+const bridge = document.getElementById('photoBridge');
+const galleryPage = document.getElementById('galleryPage');
+const galleryGrid = document.getElementById('galleryGrid');
+const galleryStatus = document.getElementById('galleryStatus');
+
+let currentEvent = null;
+let bridgeReady = false;
+let pendingMessages = [];
+let uploadQueue = [];
+let uploadInProgress = false;
+let requestTimer = null;
+let activeRequest = null;
+
+function setStatus(message) {
+  galleryStatus.textContent = message;
+}
+
+function startRequestTimeout(type) {
+  clearTimeout(requestTimer);
+  activeRequest = type;
+  requestTimer = setTimeout(() => {
+    if (activeRequest !== type) return;
+    activeRequest = null;
+    if (type === 'upload') {
+      uploadInProgress = false;
+      uploadQueue = [];
+    }
+    setStatus(
+      'The photo service did not respond. ' +
+      'Please check the Apps Script deployment and try again.'
+    );
+  }, 45000);
+}
+
+function clearRequestTimeout() {
+  clearTimeout(requestTimer);
+  requestTimer = null;
+  activeRequest = null;
+}
+
+/* Wait for the bridgeReady signal from Bridge.html */
+function sendBridge(message) {
+  if (!bridgeReady) {
+    pendingMessages.push(message);
+    return;
+  }
+
+  bridge.contentWindow.postMessage({
+    source:'AbhiShweKalyanamWebsite',
+    ...message
+  }, '*');
+}
+
+function flushMessages() {
+  const messages = pendingMessages.splice(0);
+  messages.forEach(message => sendBridge(message));
+}
+
+function requestPhotos() {
+  if (!currentEvent) return;
+
+  setStatus(bridgeReady ? 'Loading photos…' : 'Connecting to photo gallery…');
+
+  sendBridge({
+    action:'getPhotos',
+    event:currentEvent
+  });
+
+  startRequestTimeout('photos');
+}
+
+/* Display images inside the SAME event page */
+function renderPhotos(photos) {
+  galleryGrid.replaceChildren();
+
+  if (!Array.isArray(photos) || photos.length === 0) {
+    setStatus('No photos yet. Be the first to share a memory! ♡');
+    return;
+  }
+
+  let displayed = 0;
+
+  for (const photo of photos) {
+    if (!photo || typeof photo.url !== 'string') continue;
+
+    const url = photo.url;
+
+    if (!url.startsWith('https://drive.google.com/')) continue;
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+
+    const img = document.createElement('img');
+    img.src = url;
+    img.loading = 'lazy';
+    img.alt = currentEvent + ' wedding memory';
+
+    link.appendChild(img);
+    galleryGrid.appendChild(link);
+    displayed++;
+  }
+
+  setStatus(displayed + ' photo(s) shared ♡');
+}
+
+/* Receive replies from Apps Script */
+window.addEventListener('message', e => {
+  if (e.source !== bridge.contentWindow) return;
+
+  const data = e.data || {};
+  if (data.source !== 'AbhiShweKalyanamPhotos') return;
+
+  if (data.action === 'bridgeReady') {
+    bridgeReady = true;
+    flushMessages();
+    return;
+  }
+
+  if (data.event && data.event !== currentEvent) return;
+
+  if (data.action === 'photosLoaded') {
+    if (activeRequest === 'photos') clearRequestTimeout();
+    renderPhotos(data.photos);
+    return;
+  }
+
+  if (data.action === 'photoUploaded') {
+    if (activeRequest === 'upload') clearRequestTimeout();
+    uploadInProgress = false;
+
+    if (uploadQueue.length > 0) {
+      sendNextPhoto();
+    } else {
+      setStatus('Photo uploaded! Refreshing gallery…');
+      requestPhotos();
+    }
+    return;
+  }
+
+  if (data.action === 'error') {
+    clearRequestTimeout();
+    uploadInProgress = false;
+    uploadQueue = [];
+    setStatus('Photo service error: ' + (data.message || 'Please retry.'));
+  }
+});
+
+/* Load Apps Script iframe */
+bridge.src = PHOTO_WEB_APP_URL;
+
+bridge.addEventListener('load', () => {
+  // An iframe load does not guarantee Apps Script is ready.
+  // We wait for bridgeReady from Bridge.html.
+});
+
+/* Open ONLY the selected gallery */
+function openGallery(event, pushHistory = true) {
+  if (!eventNames[event]) return;
+
+  currentEvent = event;
+  document.body.classList.add('gallery-active');
+  galleryPage.classList.add('active');
+
+  document.getElementById('galleryTitle').textContent =
+    eventNames[event] + ' Photos';
+
+  document.getElementById('galleryMessage').textContent =
+    'We would love to know that you attended our ' +
+    eventNames[event] +
+    ' celebration and shared your blessings with us. ' +
+    'Please take a photo or upload your favourite memories here. ♡';
+
+  galleryGrid.replaceChildren();
+  window.scrollTo(0,0);
+
+  if (pushHistory) {
+    history.pushState(
+      {gallery:event},
+      '',
+      location.pathname + location.search + '#' + event + '-photos'
+    );
+  }
+
+  requestPhotos();
+}
+
+function closeGallery(fromHistory = false) {
+  clearRequestTimeout();
+  currentEvent = null;
+  uploadQueue = [];
+  uploadInProgress = false;
+  pendingMessages = [];
+
+  document.body.classList.remove('gallery-active');
+  galleryPage.classList.remove('active');
+  galleryGrid.replaceChildren();
+
+  if (!fromHistory && history.state && history.state.gallery) {
+    history.back();
+  } else if (!fromHistory) {
+    history.replaceState(
+      {},
+      '',
+      location.pathname + location.search + '#events'
+    );
+  }
+
+  setTimeout(() => {
+    document.getElementById('events').scrollIntoView();
+  },20);
+}
+
+document.querySelectorAll('[data-gallery]').forEach(button => {
+  button.addEventListener('click', () => {
+    openGallery(button.dataset.gallery);
+  });
+});
+
+document.getElementById('backBtn').addEventListener('click', () => {
+  closeGallery();
+});
+
+window.addEventListener('popstate', e => {
+  if (e.state && e.state.gallery) {
+    openGallery(e.state.gallery,false);
+  } else if (currentEvent) {
+    closeGallery(true);
+  }
+});
+
+/* CAMERA AND UPLOAD */
+document.getElementById('cameraBtn').addEventListener('click', () => {
+  document.getElementById('cameraInput').click();
+});
+
+document.getElementById('uploadBtn').addEventListener('click', () => {
+  document.getElementById('uploadInput').click();
+});
+
+/* Resize photos before upload to avoid Apps Script size problems */
+async function preparePhoto(file) {
+  if (!file.type.startsWith('image/')) {
+    throw new Error('Please choose an image.');
+  }
+
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(
+    1,
+    1200 / Math.max(bitmap.width,bitmap.height)
+  );
+
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1,Math.round(bitmap.width * scale));
+  canvas.height = Math.max(1,Math.round(bitmap.height * scale));
+
+  canvas.getContext('2d').drawImage(
+    bitmap,0,0,canvas.width,canvas.height
+  );
+  bitmap.close();
+
+  const blob = await new Promise(resolve => {
+    canvas.toBlob(resolve,'image/jpeg',.75);
+  });
+
+  if (!blob) throw new Error('Could not prepare photo.');
+
+  const base64Data = await new Promise((resolve,reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      resolve(String(reader.result).split(',')[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+
+  return {
+    filename:(file.name || 'photo').replace(/\.[^.]+$/,'') + '.jpg',
+    mimeType:'image/jpeg',
+    base64Data
+  };
+}
+
+/* Upload photos sequentially */
+async function sendNextPhoto() {
+  if (uploadInProgress || uploadQueue.length === 0) return;
+  if (!currentEvent) return;
+
+  const item = uploadQueue.shift();
+  uploadInProgress = true;
+
+  setStatus(
+    bridgeReady
+      ? 'Uploading photo…'
+      : 'Connecting to photo service before upload…'
+  );
+
+  sendBridge({
+    action:'uploadPhoto',
+    event:item.event,
+    filename:item.filename,
+    mimeType:item.mimeType,
+    base64Data:item.base64Data
+  });
+
+  startRequestTimeout('upload');
+}
+
+async function uploadFiles(files) {
+  if (!currentEvent || files.length === 0) return;
+
+  const selectedEvent = currentEvent;
+  setStatus('Preparing ' + files.length + ' photo(s)…');
+
+  try {
+    for (let i = 0; i < files.length; i++) {
+      if (currentEvent !== selectedEvent) return;
+
+      setStatus('Preparing photo ' + (i + 1) + ' of ' + files.length + '…');
+
+      const photo = await preparePhoto(files[i]);
+
+      uploadQueue.push({
+        event:selectedEvent,
+        ...photo
+      });
+    }
+
+    if (!uploadInProgress) sendNextPhoto();
+  } catch (error) {
+    setStatus('Could not prepare photo: ' + error.message);
+  }
+}
+
+document.getElementById('cameraInput').addEventListener('change', e => {
+  uploadFiles(Array.from(e.target.files));
+  e.target.value = '';
+});
+
+document.getElementById('uploadInput').addEventListener('change', e => {
+  uploadFiles(Array.from(e.target.files));
+  e.target.value = '';
+});
+
+/* Support direct gallery links */
+const galleryMatch = location.hash.match(
+  /^#(haldi|wedding|reception)-photos$/
+);
+
+if (galleryMatch) {
+  openGallery(galleryMatch[1],false);
+}
 </script>
-</body></html>
+</body>
+</html>
