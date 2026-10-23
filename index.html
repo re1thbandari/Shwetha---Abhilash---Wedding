@@ -785,6 +785,42 @@ async function preparePhoto(file){
   });
   return {base64Data,mimeType:'image/jpeg'};
 }
+function submitPhotoForm(data){
+  return new Promise((resolve,reject)=>{
+    const id='photoUploadFrame_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    const frame=document.createElement('iframe');
+    frame.name=id;
+    frame.title='Photo upload';
+    frame.style.display='none';
+    const form=document.createElement('form');
+    form.method='POST';
+    form.action=PHOTO_WEB_APP_URL;
+    form.target=id;
+    form.enctype='application/x-www-form-urlencoded';
+    form.style.display='none';
+    const field=document.createElement('textarea');
+    field.name='payload';
+    field.value=JSON.stringify(data);
+    form.appendChild(field);
+    document.body.appendChild(frame);
+    document.body.appendChild(form);
+    let submitted=false;
+    const timeout=setTimeout(()=>finish(new Error('Photo upload request timed out.')),30000);
+    function finish(error){
+      clearTimeout(timeout);
+      form.remove();
+      setTimeout(()=>frame.remove(),1000);
+      if(error)reject(error);else resolve();
+    }
+    frame.addEventListener('load',()=>{
+      if(!submitted)return;
+      finish();
+    },{once:false});
+    frame.addEventListener('error',()=>finish(new Error('Could not submit photo upload.')),{once:true});
+    submitted=true;
+    form.submit();
+  });
+}
 function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
 async function uploadFiles(files){
   if(!currentEvent||!files.length||uploading)return;
@@ -798,8 +834,9 @@ async function uploadFiles(files){
       const prepared=await preparePhoto(files[i]);
       const filename='guest_'+Date.now()+'_'+Math.random().toString(36).slice(2,12)+'.jpg';
       setStatus('Uploading photo '+(i+1)+' of '+files.length+'…');
-      // no-cors does NOT provide an observable response; verify by polling Drive listing.
-      await fetch(PHOTO_WEB_APP_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({event,filename,...prepared})});
+      // Submit via a normal HTML form into a hidden iframe. This avoids fetch/CORS.
+      // The response is cross-origin, so verify the saved filename via JSONP below.
+      await submitPhotoForm({event,filename,...prepared});
       let found=false;
       for(let attempt=0;attempt<12;attempt++){
         await sleep(2500);
