@@ -1,0 +1,9 @@
+ABHISHWEKALYANAM PHOTO CONNECTION FIX
+
+1. In your PHOTO Google Apps Script project, replace Code.gs with the attached Code.gs. Save.
+2. Deploy > Manage deployments > Edit (pencil) > Version: New version > Deploy. Execute as Me; Access Anyone. Keep the existing /exec URL.
+3. In GitHub, replace index.html with the attached index.html. Commit. Keep the existing logo and music files.
+4. Check https://script.google.com/macros/s/AKfycbxzO4_jFrFdVQGYzdzURFhBn_ygPMFNBfw4RzhBo5CHU3lUKDJfzLBowquJkPtbEC0svQ/exec?event=haldi and ensure JSON appears.
+5. Test upload on GitHub Pages. The page checks the Drive listing for the uploaded filename before showing success.
+
+NOTE: Public anonymous uploads and publicly viewable photos have privacy/abuse risks; Apps Script and Drive quotas apply. No unlimited storage or guaranteed reliability. RSVP remains unchanged and its no-cors submission cannot confirm Sheet receipt. Test separately.
