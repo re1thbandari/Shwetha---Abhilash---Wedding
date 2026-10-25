@@ -330,6 +330,92 @@ body.gallery-active .gallery-page.active {display:block}
 @media(prefers-reduced-motion:reduce) {
   html {scroll-behavior:auto}
 }
+
+/* Royal Blush & Gold — opening screen refinement */
+.opening {
+  background: radial-gradient(ellipse at 50% 38%, #f8e4e7 0%, #e8b8c5 56%, #c9859c 100%);
+  box-shadow: inset 0 0 95px rgba(111,49,73,.14);
+}
+.opening::before {
+  background: radial-gradient(circle at 50% 45%, rgba(255,250,242,.32), transparent 57%);
+  opacity:1;
+}
+.opening::after {
+  content:"";
+  position:absolute;
+  inset:15px;
+  border:1px solid rgba(255,243,214,.45);
+  pointer-events:none;
+  border-radius: min(4vw,24px);
+}
+.mandala {
+  width: min(124vmax, 1700px);
+  height: min(124vmax, 1700px);
+  opacity:.58;
+  transform:translate3d(-50%,-50%,0);
+  backface-visibility:hidden;
+  contain:layout paint;
+}
+.mandala svg { filter:drop-shadow(0 1px 1px rgba(255,251,239,.35)); }
+.opening-content {
+  max-width:560px;
+  padding:32px 24px;
+  text-shadow:0 1px 12px rgba(112,57,77,.18);
+}
+.opening-content .telugu {
+  color:#fff9e9;
+  font-size:clamp(22px,5.5vw,30px);
+  margin-bottom:14px;
+}
+.opening-content .eyebrow {
+  color:#fff8ee;
+  font-size:11px;
+  letter-spacing:.33em;
+  margin:16px 0 22px;
+}
+.opening-logo {
+  width:min(68vw,330px);
+  max-height:250px;
+  margin:10px auto 22px;
+  filter:drop-shadow(0 8px 22px rgba(102,48,65,.12));
+}
+.opening-content > p:not(.telugu):not(.eyebrow) {
+  color:#fff9f2;
+  font-family:"Playfair Display",serif;
+  font-style:italic;
+  font-size:clamp(16px,3.8vw,21px);
+  letter-spacing:.025em;
+}
+.opening-content .btn {
+  background:#fff9f4;
+  border:1px solid rgba(255,255,255,.8);
+  color:#855268;
+  padding:16px 34px;
+  box-shadow:0 12px 28px rgba(101,45,68,.16);
+  transition:transform .25s ease-out, box-shadow .25s ease-out;
+}
+.opening-content .btn:active {transform:scale(.97)}
+.opening.opened {animation:openingFadePremium 2s ease-out both}
+.opening.opened .mandala {animation:mandalaSpinPremium 2s linear both}
+.opening.opened .opening-content {animation:contentFadePremium .55s ease-out both}
+@keyframes mandalaSpinPremium {
+  from {transform:translate3d(-50%,-50%,0) rotate(0deg) scale(1)}
+  to {transform:translate3d(-50%,-50%,0) rotate(300deg) scale(1.13)}
+}
+@keyframes openingFadePremium {
+  0%,36% {opacity:1}
+  100% {opacity:0}
+}
+@keyframes contentFadePremium {
+  0% {opacity:1;transform:translateY(0)}
+  100% {opacity:0;transform:translateY(-10px)}
+}
+@media(prefers-reduced-motion:reduce) {
+  .opening.opened {animation-duration:.2s}
+  .opening.opened .mandala {animation:none}
+  .opening.opened .opening-content {animation-duration:.2s}
+}
+
 </style>
 </head>
 
@@ -369,7 +455,7 @@ body.gallery-active .gallery-page.active {display:block}
     >
     <div id="logoFallback" class="logo-fallback" hidden>S &amp; A</div>
     <p>A beautiful beginning awaits</p>
-    <button class="btn" id="openBtn">Open invitation ↗</button>
+    <button class="btn" id="openBtn" type="button">Open invitation ↗</button>
   </div>
 </div>
 
