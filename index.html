@@ -452,7 +452,13 @@ img,svg,video{max-width:100%;height:auto}
 @media(max-width:600px){.moments-stage{height:410px}.moment-card{width:min(58vw,270px);height:340px}.moment-card:not(.active){box-shadow:0 10px 25px #73455722}}
 
 </style>
-</head>
+<style>
+/* Requested refinement: no decorative arch; preserve the original mandala. */
+.opening::after, .hero::before { content:none !important; display:none !important; background:none !important; }
+.hero .couple-names { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.04em; line-height:1.12; }
+.hero .couple-names > span { display:block; }
+.hero .couple-names > em { display:block; margin:.05em 0; font-size:.7em; line-height:1; }
+</style></head>
 
 <body>
 
@@ -504,7 +510,7 @@ img,svg,video{max-width:100%;height:auto}
       <div>
         <p class="telugu">శుభ వివాహం</p>
         <p class="eyebrow">Together with our families</p>
-        <h1>Shwetha <em>&</em><br>Abhilash</h1>
+        <h1 class="couple-names"><span>Shwetha</span><em>&amp;</em><span>Abhilash</span></h1>
         <div class="flower">❀</div>
         <p class="subtitle">
           With joy in our hearts, we invite you to celebrate
