@@ -458,7 +458,54 @@ img,svg,video{max-width:100%;height:auto}
 .hero .couple-names { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.04em; line-height:1.12; }
 .hero .couple-names > span { display:block; }
 .hero .couple-names > em { display:block; margin:.05em 0; font-size:.7em; line-height:1; }
-</style></head>
+</style><style>
+:root{--pink:#e9b9c8;--blush:#f9edf0;--rose:#a86b81;--ink:#573c49;--cream:#fffaf9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}.eyebrow{font-size:11px;letter-spacing:.3em;font-weight:600;color:var(--rose)}.curtain{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;transition:visibility 0s 1.7s}.curtain-panel{position:absolute;top:0;bottom:0;width:50.5%;background:repeating-linear-gradient(90deg,#e9b5c6 0%,#f7d9e2 9%,#e6afc1 18%,#f4d2de 28%);box-shadow:inset -15px 0 40px #b66c8a44;transition:transform 1.65s cubic-bezier(.76,0,.24,1)}.curtain-panel.left{left:0;border-right:2px solid #fff7}.curtain-panel.right{right:0;transform:scaleX(-1);border-right:2px solid #fff7}.curtain.opened .left{transform:translateX(-105%)}.curtain.opened .right{transform:translateX(105%) scaleX(-1)}.curtain.opened{visibility:hidden}.curtain-center{position:relative;z-index:2;display:flex;align-items:center;flex-direction:column;gap:28px;text-align:center;transition:opacity .4s}.curtain.opened .curtain-center{opacity:0}.curtain-center .eyebrow{color:#714454}.monogram{font-family:'Playfair Display',serif;font-size:clamp(70px,17vw,125px);color:#fff;filter:drop-shadow(0 2px 12px #8e4a6b80)}.monogram i{font-size:.4em;font-weight:400}.primary{border:0;border-radius:50px;background:var(--ink);color:white;padding:16px 29px;cursor:pointer;letter-spacing:.06em;box-shadow:0 8px 25px #573c4922}.primary:hover{background:#81566a}.music-toggle{position:fixed;z-index:30;right:16px;top:16px;background:#fffdfbeb;border:1px solid #e7ced6;border-radius:40px;color:var(--ink);padding:11px 16px;cursor:pointer;font-size:13px;box-shadow:0 3px 20px #573c4910}.hero{min-height:100svh;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#fff 0%,#f9eaf0 62%,#efcfda 100%);padding:80px 22px}.hero:before,.hero:after{content:'✿';position:absolute;font-size:clamp(180px,32vw,430px);color:#df9eb532;line-height:1}.hero:before{top:-90px;left:-100px;transform:rotate(-22deg)}.hero:after{bottom:-130px;right:-80px;transform:rotate(30deg)}.hero-inner{text-align:center;z-index:1;position:relative;max-width:900px}.hero h1{font-family:'Great Vibes',cursive;font-size:clamp(65px,11vw,125px);font-weight:400;line-height:1.25;margin:25px 0 0;color:#8e5269}.hero h1 span{display:block;font-family:'Playfair Display',serif;font-size:.3em;margin:3px}.ornament{font-size:32px;color:#c68ba1;margin:18px}.intro{font-family:'Playfair Display',serif;font-size:clamp(17px,3vw,23px);font-style:italic}.date{font-size:12px;letter-spacing:.22em;font-weight:600;margin-top:30px}.scroll-link{display:inline-block;margin-top:65px;text-decoration:none;font-size:12px;letter-spacing:.12em}.petal{position:absolute;background:#d995ad70;border-radius:90% 0 90% 0;animation:float 7s ease-in-out infinite}.petal-one{height:25px;width:15px;top:10%;left:12%}.petal-two{height:16px;width:12px;right:8%;top:25%;animation-delay:-3s}.petal-three{height:22px;width:12px;bottom:8%;left:70%;animation-delay:-5s}@keyframes float{50%{transform:translate(25px,45px) rotate(60deg)}}.section{text-align:center;padding:115px 24px}.section h2{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:400;line-height:1.35;margin:18px auto 25px}.section h2 em{font-family:'Great Vibes',cursive;font-size:1.4em;font-weight:400;color:var(--rose)}.section-copy{max-width:510px;margin:0 auto;line-height:2;color:#7b6871}.story{background:#fff}.line-art{font-size:75px;color:#d7a3b4;margin-top:25px}.countdown-section{background:var(--blush)}.countdown{display:flex;justify-content:center;gap:clamp(12px,4vw,50px);margin-top:55px}.countdown div{min-width:60px}.countdown strong{font-family:'Playfair Display',serif;font-size:clamp(33px,6vw,64px);font-weight:400;display:block}.countdown small{font-size:10px;letter-spacing:.15em;color:var(--rose)}.muted,.hint{color:#907985;font-size:13px;line-height:1.7}.events{background:#fff}.event-card{max-width:460px;margin:50px auto 25px;padding:50px 22px;background:#fff8fa;border:1px solid #ebced8;border-radius:180px 180px 15px 15px}.event-icon{font-size:36px;color:var(--rose)}.event-card h3{font-family:'Playfair Display',serif;font-size:29px;font-weight:400}.event-detail{color:#78636e}.outline{display:inline-block;margin-top:24px;border:1px solid var(--rose);border-radius:30px;padding:13px 22px;text-decoration:none;font-size:13px}.disabled{opacity:.55;pointer-events:none}.rsvp{background:var(--blush)}.rsvp-form{display:flex;flex-direction:column;max-width:430px;text-align:left;margin:45px auto 0;gap:12px}.rsvp-form label{font-size:13px;font-weight:600;margin-top:8px}.rsvp-form input,.rsvp-form select{background:#fff;border:1px solid #e6c9d3;border-radius:10px;padding:14px;color:var(--ink);min-height:49px}.rsvp-form button{margin-top:20px}footer{text-align:center;padding:55px 20px;background:#eecfd9}footer span{font-family:'Great Vibes',cursive;font-size:45px}footer i{font-size:25px}footer p{font-size:11px;letter-spacing:.2em}.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s ease,transform .85s ease}.reveal.visible{opacity:1;transform:translateY(0)}@media(max-width:500px){.section{padding:85px 22px}.hero h1{font-size:70px}.countdown{gap:15px}.event-card{padding:45px 18px}.music-toggle{right:10px;top:10px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* Version 2: Telugu-inspired minimal pink details */
+.opening-blessing,.telugu-heading{font-family:serif;color:#995b75;letter-spacing:.06em;font-size:1.15rem;display:block;margin-bottom:18px}.opening-blessing{color:#fff;font-size:1.4rem;text-shadow:0 1px 8px #8c526e}.wedding-hashtag,.footer-hashtag{letter-spacing:.12em;color:#9d637e;font-size:.88rem;margin-top:18px}.blessing{background:linear-gradient(160deg,#fff9fa,#f8e7ed);text-align:center}.floral-divider{font-size:1.7rem;color:#bd829b;letter-spacing:.65em;margin-top:25px}.flower-rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:30;visibility:hidden}.flower-rain.active{visibility:visible}.falling-flower{position:absolute;top:-8vh;left:var(--x);font-size:var(--size);opacity:.8;animation:flowerFall var(--duration) linear var(--delay) forwards;filter:drop-shadow(0 2px 2px #bb849a44)}@keyframes flowerFall{0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}8%{opacity:.9}90%{opacity:.75}100%{transform:translate3d(var(--drift),110vh,0) rotate(540deg);opacity:0}}@media(prefers-reduced-motion:reduce){.falling-flower{animation:none;display:none}}
+
+.creator-credit{margin:17px auto 0;max-width:520px;color:#70485a}
+footer .creator-made{letter-spacing:0;font-size:clamp(12px,2.9vw,15px);margin:14px 0 8px}
+.creator-made strong{font-weight:600}
+.creator-subline{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;font-size:clamp(11px,2.6vw,14px)}
+.creator-subline em{font-family:'Playfair Display',Georgia,serif}
+.creator-divider{width:1px;height:21px;background:#a97b8d}
+.creator-mail{border:0;background:transparent;color:#70485a;display:inline-grid;place-items:center;padding:5px;cursor:pointer;transition:transform .35s}
+.creator-mail[aria-expanded=true]{transform:translateY(-3px) rotate(-8deg)}
+.creator-email-panel{max-height:0;opacity:0;overflow:hidden;transform:translateY(-7px);transition:max-height .4s ease,opacity .4s ease,transform .4s ease}
+.creator-email-panel.visible{max-height:90px;opacity:1;transform:translateY(0)}
+.creator-email-panel a{display:inline-block;font:clamp(11px,2.7vw,14px) 'DM Sans',sans-serif;letter-spacing:0;padding:10px 0 3px;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.gallery-photo-button{display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;border-radius:10px;overflow:hidden}
+.gallery-photo-button img{display:block;width:100%;height:100%;object-fit:cover}
+body.lightbox-active{overflow:hidden}
+
+.photo-lightbox.active{display:flex}
+.photo-lightbox img{display:block;max-width:100%;max-height:calc(100dvh - 180px);width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 14px 35px #70485a2e;user-select:none}
+.lightbox-top,.lightbox-bottom{position:absolute;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;font:13px 'DM Sans',sans-serif;letter-spacing:.07em}
+.lightbox-top{top:20px}.lightbox-bottom{bottom:22px}
+.photo-lightbox button{border:1px solid #d6b6bf;background:#fff9f7d9;color:#70485a;cursor:pointer;display:grid;place-items:center}
+#lightboxClose{width:42px;height:42px;border-radius:50%;font-size:29px}
+#lightboxDownload{width:46px;height:46px;border-radius:50%}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);border-radius:50%;width:38px;height:45px;font-size:30px}
+.lightbox-nav[hidden]{display:none}
+.lightbox-prev{left:8px}.lightbox-next{right:8px}
+.lightbox-message{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font:10px 'DM Sans',sans-serif;white-space:nowrap;margin:0}
+@media(max-width:500px){.lightbox-top,.lightbox-bottom{left:14px;right:14px}.lightbox-nav{width:32px;height:43px}.lightbox-prev{left:3px}.lightbox-next{right:3px}}
+
+</style><style id="creator-footer-only">
+footer .creator-credit{margin:16px auto 0;max-width:520px;color:#70485a}
+footer .creator-made{font:clamp(12px,3vw,15px) 'DM Sans',Arial,sans-serif;letter-spacing:0;margin:14px 0 9px;color:#70485a}
+footer .creator-made strong{font-weight:700}
+footer .creator-subline{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;color:#70485a}
+footer .creator-subline em{font:italic clamp(12px,3vw,16px) 'Playfair Display',Georgia,serif}
+footer .creator-divider{height:22px;width:1px;background:#a57e8c}
+footer .creator-mail{display:inline-grid;place-items:center;border:0;background:transparent;color:#70485a;padding:6px;width:37px;height:37px;cursor:pointer;transition:transform .35s ease}
+footer .creator-mail[aria-expanded="true"]{transform:translateY(-3px) rotate(-12deg)}
+footer .creator-email-panel{max-height:0;opacity:0;overflow:hidden;transform:translateY(-8px);transition:max-height .45s ease,opacity .45s ease,transform .45s ease}
+footer .creator-email-panel.visible{max-height:70px;opacity:1;transform:translateY(0)}
+footer .creator-email-panel a{display:inline-block;padding:12px 0 3px;color:#70485a!important;text-decoration:underline;text-underline-offset:4px;font:clamp(12px,3vw,14px) 'DM Sans',Arial,sans-serif;letter-spacing:0;overflow-wrap:anywhere}
+</style>
+</head>
 
 <body>
 
@@ -663,7 +710,7 @@ img,svg,video{max-width:100%;height:auto}
     <div class="names">Shwetha & Abhilash</div>
     <p>20 · 11 · 2026</p>
     <p>#AbhiShweKalyanam</p>
-    <p>Made with love ♡</p>
+    <div class="creator-credit"><p class="creator-made">Thoughtfully Crafted by <strong>Revanth Bandari</strong></p><div class="creator-subline"><em>Wedding Websites &amp; Beyond</em><span class="creator-divider" aria-hidden="true"></span><button type="button" class="creator-mail" id="creatorMail" aria-label="Reveal creator email" aria-expanded="false"><svg viewBox="0 0 28 28" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h22v14H3z"/><path d="m3 8 11 9 11-9"/></svg></button></div><div class="creator-email-panel" id="creatorEmailPanel" aria-hidden="true"><a href="mailto:revanthbandari1819@gmail.com?subject=Wedding%20Website%20Enquiry">revanthbandari1819@gmail.com</a></div></div>
   </footer>
 </div>
 
@@ -688,9 +735,6 @@ img,svg,video{max-width:100%;height:auto}
     <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </section>
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 "use strict";
@@ -888,17 +932,24 @@ async function requestPhotos(){
   }catch(error){if(session===gallerySession)setStatus('Gallery error: '+(error.message||error));}
 }
 function renderPhotos(photos){
-  galleryGrid.replaceChildren();
+  galleryGrid.innerHTML='';
   if(!photos.length){setStatus('No photos yet. Be the first to share a memory! ♡');return;}
-  for(const photo of photos){
-    const link=document.createElement('a');
-    link.href=photo.url;link.target='_blank';link.rel='noopener noreferrer';
+  photos.forEach(photo=>{
     const img=document.createElement('img');
     img.src=photo.url;img.loading='lazy';img.alt='Shared '+currentEvent+' photo';
-    link.appendChild(img);galleryGrid.appendChild(link);
-  }
+    img.addEventListener('click',()=>window.open(photo.url,'_blank','noopener,noreferrer'));
+    galleryGrid.appendChild(img);
+  });
   setStatus(photos.length+' photo(s) shared ♡');
 }
+const creatorMail=document.getElementById('creatorMail');
+const creatorEmailPanel=document.getElementById('creatorEmailPanel');
+creatorMail.addEventListener('click',()=>{
+ const open=creatorMail.getAttribute('aria-expanded')==='true';
+ creatorMail.setAttribute('aria-expanded',String(!open));
+ creatorEmailPanel.setAttribute('aria-hidden',String(open));
+ creatorEmailPanel.classList.toggle('visible',!open);
+});
 function openGallery(event,pushHistory=true){
   if(!eventNames[event])return;
   currentEvent=event;gallerySession++;
