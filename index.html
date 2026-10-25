@@ -663,7 +663,7 @@ img,svg,video{max-width:100%;height:auto}
     <div class="names">Shwetha & Abhilash</div>
     <p>20 · 11 · 2026</p>
     <p>#AbhiShweKalyanam</p>
-    <div class="creator-credit"><p class="creator-made">Thoughtfully Crafted by <strong>Revanth Bandari</strong></p><div class="creator-subline"><em>Wedding Websites &amp; Beyond</em><span class="creator-divider" aria-hidden="true"></span><button type="button" class="creator-mail" id="creatorMail" aria-label="Reveal creator email" aria-expanded="false"><svg viewBox="0 0 28 28" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h22v14H3z"/><path d="m3 8 11 9 11-9"/></svg></button></div><div class="creator-email-panel" id="creatorEmailPanel" aria-hidden="true"><a href="mailto:revanthbandari1819@gmail.com?subject=Wedding%20Website%20Enquiry">revanthbandari1819@gmail.com</a></div></div>
+    <p>Made with love ♡</p>
   </footer>
 </div>
 
@@ -688,14 +688,8 @@ img,svg,video{max-width:100%;height:auto}
     <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </section>
-<div class="photo-lightbox" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
-  <div class="lightbox-top"><span id="lightboxEvent"></span><button type="button" id="lightboxClose" aria-label="Close photo viewer">×</button></div>
-  <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">‹</button>
-  <img id="lightboxImage" alt="Wedding memory" draggable="false">
-  <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">›</button>
-  <div class="lightbox-bottom"><span id="lightboxCount"></span><button type="button" id="lightboxDownload" aria-label="Download photo" title="Download photo"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></button></div>
-  <p class="lightbox-message" id="lightboxMessage" role="status"></p>
-</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
@@ -893,102 +887,18 @@ async function requestPhotos(){
     renderPhotos(photos);
   }catch(error){if(session===gallerySession)setStatus('Gallery error: '+(error.message||error));}
 }
-let visibleGalleryPhotos=[],lightboxIndex=0,lightboxReturnFocus=null;
-const photoLightbox=document.getElementById('photoLightbox');
-const lightboxImage=document.getElementById('lightboxImage');
 function renderPhotos(photos){
-  visibleGalleryPhotos=photos;
   galleryGrid.replaceChildren();
   if(!photos.length){setStatus('No photos yet. Be the first to share a memory! ♡');return;}
-  photos.forEach((photo,index)=>{
-    const button=document.createElement('button');
-    button.type='button';button.className='gallery-photo-button';
-    button.setAttribute('aria-label','View '+eventNames[currentEvent]+' photo '+(index+1));
+  for(const photo of photos){
+    const link=document.createElement('a');
+    link.href=photo.url;link.target='_blank';link.rel='noopener noreferrer';
     const img=document.createElement('img');
     img.src=photo.url;img.loading='lazy';img.alt='Shared '+currentEvent+' photo';
-    button.appendChild(img);
-    button.addEventListener('click',()=>openPhotoViewer(index,button));
-    galleryGrid.appendChild(button);
-  });
+    link.appendChild(img);galleryGrid.appendChild(link);
+  }
   setStatus(photos.length+' photo(s) shared ♡');
 }
-function showLightboxPhoto(index){
-  if(!visibleGalleryPhotos.length)return;
-  lightboxIndex=(index+visibleGalleryPhotos.length)%visibleGalleryPhotos.length;
-  const photo=visibleGalleryPhotos[lightboxIndex];
-  lightboxImage.src=photo.url;
-  lightboxImage.alt=eventNames[currentEvent]+' photo '+(lightboxIndex+1);
-  document.getElementById('lightboxCount').textContent=(lightboxIndex+1)+' / '+visibleGalleryPhotos.length;
-  document.getElementById('lightboxMessage').textContent='';
-  document.getElementById('lightboxPrev').hidden=visibleGalleryPhotos.length<2;
-  document.getElementById('lightboxNext').hidden=visibleGalleryPhotos.length<2;
-}
-function openPhotoViewer(index,button){
-  lightboxReturnFocus=button;
-  document.getElementById('lightboxEvent').textContent=eventNames[currentEvent]+' Memories';
-  showLightboxPhoto(index);
-  photoLightbox.classList.add('active');
-  photoLightbox.setAttribute('aria-hidden','false');
-  document.body.classList.add('lightbox-active');
-  document.getElementById('lightboxClose').focus();
-}
-function closePhotoViewer(){
-  if(!photoLightbox.classList.contains('active'))return;
-  photoLightbox.classList.remove('active');photoLightbox.setAttribute('aria-hidden','true');
-  document.body.classList.remove('lightbox-active');
-  lightboxImage.removeAttribute('src');
-  if(lightboxReturnFocus&&lightboxReturnFocus.isConnected)lightboxReturnFocus.focus();
-}
-document.getElementById('lightboxClose').addEventListener('click',closePhotoViewer);
-document.getElementById('lightboxPrev').addEventListener('click',()=>showLightboxPhoto(lightboxIndex-1));
-document.getElementById('lightboxNext').addEventListener('click',()=>showLightboxPhoto(lightboxIndex+1));
-photoLightbox.addEventListener('click',e=>{if(e.target===photoLightbox)closePhotoViewer()});
-document.addEventListener('keydown',e=>{
-  if(!photoLightbox.classList.contains('active'))return;
-  if(e.key==='Escape')closePhotoViewer();
-  if(e.key==='ArrowLeft')showLightboxPhoto(lightboxIndex-1);
-  if(e.key==='ArrowRight')showLightboxPhoto(lightboxIndex+1);
-  if(e.key==='Tab'){
-    const controls=[...photoLightbox.querySelectorAll('button:not([hidden])')];
-    const first=controls[0],last=controls[controls.length-1];
-    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
-    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
-  }
-});
-let touchStartX=0,touchStartY=0;
-photoLightbox.addEventListener('touchstart',e=>{if(e.touches.length===1){touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY}},{passive:true});
-photoLightbox.addEventListener('touchend',e=>{
-  if(!e.changedTouches.length)return;
-  const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;
-  if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.25)showLightboxPhoto(lightboxIndex+(dx<0?1:-1));
-},{passive:true});
-document.getElementById('lightboxDownload').addEventListener('click',async()=>{
-  const photo=visibleGalleryPhotos[lightboxIndex];if(!photo)return;
-  const status=document.getElementById('lightboxMessage');
-  status.textContent='Preparing download…';
-  try{
-    const response=await fetch(photo.url);
-    if(!response.ok)throw new Error('Download unavailable');
-    const blob=await response.blob();
-    const url=URL.createObjectURL(blob);
-    const link=document.createElement('a');
-    const extension=blob.type==='image/png'?'png':blob.type==='image/webp'?'webp':'jpg';
-    link.href=url;link.download='AbhiShweKalyanam-'+currentEvent+'-'+(lightboxIndex+1)+'.'+extension;
-    document.body.appendChild(link);link.click();link.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),15000);
-    status.textContent='Download started. Check Downloads or your photo gallery.';
-  }catch(error){
-    status.textContent='Your browser could not download directly. Opening the photo so you can save it.';
-    window.open(photo.url,'_blank','noopener,noreferrer');
-  }
-});
-const creatorMail=document.getElementById('creatorMail'),creatorEmailPanel=document.getElementById('creatorEmailPanel');
-creatorMail.addEventListener('click',()=>{
-  const expanded=creatorMail.getAttribute('aria-expanded')==='true';
-  creatorMail.setAttribute('aria-expanded',String(!expanded));
-  creatorEmailPanel.setAttribute('aria-hidden',String(expanded));
-  creatorEmailPanel.classList.toggle('visible',!expanded);
-});
 function openGallery(event,pushHistory=true){
   if(!eventNames[event])return;
   currentEvent=event;gallerySession++;
@@ -1000,7 +910,7 @@ function openGallery(event,pushHistory=true){
   requestPhotos();
 }
 function closeGallery(fromHistory=false){
-  closePhotoViewer();gallerySession++;currentEvent=null;
+  gallerySession++;currentEvent=null;
   document.body.classList.remove('gallery-active');galleryPage.classList.remove('active');galleryGrid.replaceChildren();
   if(!fromHistory&&history.state&&history.state.gallery)history.back();
   else if(!fromHistory)history.replaceState({},'',location.pathname+location.search+'#events');
