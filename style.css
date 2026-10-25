@@ -2,3 +2,31 @@
 
 /* Version 2: Telugu-inspired minimal pink details */
 .opening-blessing,.telugu-heading{font-family:serif;color:#995b75;letter-spacing:.06em;font-size:1.15rem;display:block;margin-bottom:18px}.opening-blessing{color:#fff;font-size:1.4rem;text-shadow:0 1px 8px #8c526e}.wedding-hashtag,.footer-hashtag{letter-spacing:.12em;color:#9d637e;font-size:.88rem;margin-top:18px}.blessing{background:linear-gradient(160deg,#fff9fa,#f8e7ed);text-align:center}.floral-divider{font-size:1.7rem;color:#bd829b;letter-spacing:.65em;margin-top:25px}.flower-rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:30;visibility:hidden}.flower-rain.active{visibility:visible}.falling-flower{position:absolute;top:-8vh;left:var(--x);font-size:var(--size);opacity:.8;animation:flowerFall var(--duration) linear var(--delay) forwards;filter:drop-shadow(0 2px 2px #bb849a44)}@keyframes flowerFall{0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}8%{opacity:.9}90%{opacity:.75}100%{transform:translate3d(var(--drift),110vh,0) rotate(540deg);opacity:0}}@media(prefers-reduced-motion:reduce){.falling-flower{animation:none;display:none}}
+
+.creator-credit{margin:17px auto 0;max-width:520px;color:#70485a}
+footer .creator-made{letter-spacing:0;font-size:clamp(12px,2.9vw,15px);margin:14px 0 8px}
+.creator-made strong{font-weight:600}
+.creator-subline{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;font-size:clamp(11px,2.6vw,14px)}
+.creator-subline em{font-family:'Playfair Display',Georgia,serif}
+.creator-divider{width:1px;height:21px;background:#a97b8d}
+.creator-mail{border:0;background:transparent;color:#70485a;display:inline-grid;place-items:center;padding:5px;cursor:pointer;transition:transform .35s}
+.creator-mail[aria-expanded=true]{transform:translateY(-3px) rotate(-8deg)}
+.creator-email-panel{max-height:0;opacity:0;overflow:hidden;transform:translateY(-7px);transition:max-height .4s ease,opacity .4s ease,transform .4s ease}
+.creator-email-panel.visible{max-height:90px;opacity:1;transform:translateY(0)}
+.creator-email-panel a{display:inline-block;font:clamp(11px,2.7vw,14px) 'DM Sans',sans-serif;letter-spacing:0;padding:10px 0 3px;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.gallery-photo-button{display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;border-radius:10px;overflow:hidden}
+.gallery-photo-button img{display:block;width:100%;height:100%;object-fit:cover}
+body.lightbox-active{overflow:hidden}
+.photo-lightbox{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,#fff6f5 0%,#f4d7e0 70%,#e8c3d0 100%);color:#70485a;padding:76px 54px 86px}
+.photo-lightbox.active{display:flex}
+.photo-lightbox img{display:block;max-width:100%;max-height:calc(100dvh - 180px);width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 14px 35px #70485a2e;user-select:none}
+.lightbox-top,.lightbox-bottom{position:absolute;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;font:13px 'DM Sans',sans-serif;letter-spacing:.07em}
+.lightbox-top{top:20px}.lightbox-bottom{bottom:22px}
+.photo-lightbox button{border:1px solid #d6b6bf;background:#fff9f7d9;color:#70485a;cursor:pointer;display:grid;place-items:center}
+#lightboxClose{width:42px;height:42px;border-radius:50%;font-size:29px}
+#lightboxDownload{width:46px;height:46px;border-radius:50%}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);border-radius:50%;width:38px;height:45px;font-size:30px}
+.lightbox-nav[hidden]{display:none}
+.lightbox-prev{left:8px}.lightbox-next{right:8px}
+.lightbox-message{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font:10px 'DM Sans',sans-serif;white-space:nowrap;margin:0}
+@media(max-width:500px){.photo-lightbox{padding:76px 40px 90px}.lightbox-top,.lightbox-bottom{left:14px;right:14px}.lightbox-nav{width:32px;height:43px}.lightbox-prev{left:3px}.lightbox-next{right:3px}}
