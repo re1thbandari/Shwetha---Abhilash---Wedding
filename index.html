@@ -209,7 +209,6 @@ h1 em,h2 em {
   border:1px solid #e9c8d2;
   border-radius:20px;
 }
-.event.haldi {background:#fff9e9}
 .event.reception {background:#fff8f8}
 .event h3 {font-size:28px}
 .event-icon {font-size:40px}
@@ -367,7 +366,6 @@ body{background:#fff9f3}
 .event-grid{gap:24px}
 .event{border:1px solid #c7a473;border-radius:110px 110px 18px 18px;padding:44px 20px 30px;box-shadow:0 16px 35px #6d3a4d17;background:linear-gradient(#fffaf4,#fff5f2);position:relative;overflow:hidden}
 .event::before{content:"✦";position:absolute;top:17px;left:0;right:0;text-align:center;color:#bb985e}
-.event.haldi{background:linear-gradient(#fff8dc,#fffaf4)}
 .event.reception{background:linear-gradient(#fae8ec,#fffaf4)}
 .event h3{color:#8c455d}
 .blessing{background:linear-gradient(#f7dce3,#f3d1dc)}
@@ -555,7 +553,7 @@ footer .creator-email-panel a{display:inline-block;padding:12px 0 3px;color:#704
         <div><strong id="minutes">--</strong><small>MINUTES</small></div>
         <div><strong id="seconds">--</strong><small>SECONDS</small></div>
       </div>
-      <p id="countdownMsg">20 November 2026 · 10:30 AM IST</p>
+      <p id="countdownMsg">20 November 2026 · 9:48 AM IST</p>
     </section>
 
 
@@ -583,29 +581,16 @@ footer .creator-email-panel a{display:inline-block;padding:12px 0 3px;color:#704
       <h2>Our wedding <em>celebrations</em></h2>
 
       <div class="event-grid">
-        <article class="event haldi">
-          <div class="event-icon">🌼</div>
-          <p class="eyebrow">Monday · 16 November</p>
-          <h3>Haldi</h3>
-          <p><strong>7:00 PM</strong></p>
-          <p class="where">Near Home</p>
-          <p class="note">A golden evening of blessings and laughter</p>
-          <div class="event-actions">
-            <button class="btn secondary directions-pending" type="button" disabled title="Location link to be added">Get directions (soon)</button>
-            <button class="btn" data-gallery="haldi">Haldi Photos ↗</button>
-          </div>
-        </article>
-
         <article class="event">
           <div class="event-icon">💍</div>
           <p class="eyebrow">Friday · 20 November</p>
           <h3>Wedding Muhurtham</h3>
-          <p><strong>10:30 AM</strong></p>
-          <p class="where">Sri Durga Garden<br>Sadashivpet, Telangana</p>
+          <p><strong>9:48 AM</strong></p>
+          <p class="where">Balaji Gardens Function Hall</p>
           <div class="event-actions">
             <a
               class="btn secondary"
-              href="https://maps.app.goo.gl/d1aZyvhSfPYtBdq18?g_st=ac"
+              href="https://maps.app.goo.gl/gksZZqdvZmpMQv3q9"
               target="_blank"
               rel="noopener noreferrer"
             >Get directions ↗</a>
@@ -656,11 +641,9 @@ footer .creator-email-panel a{display:inline-block;padding:12px 0 3px;color:#704
         <label for="functions">Celebration</label>
         <select id="functions">
           <option>Wedding</option>
-          <option>Haldi</option>
           <option>Reception</option>
-          <option>Haldi & Wedding</option>
           <option>Wedding & Reception</option>
-          <option>All three</option>
+          <option>Both Wedding & Reception</option>
           <option>None</option>
         </select>
 
@@ -697,7 +680,7 @@ footer .creator-email-panel a{display:inline-block;padding:12px 0 3px;color:#704
   <div class="gallery-inner">
     <button class="back" id="backBtn">← Back to Celebrations</button>
     <p class="eyebrow">Our cherished memories</p>
-    <h1 id="galleryTitle">Haldi Photos</h1>
+    <h1 id="galleryTitle">Wedding Photos</h1>
 
     <p class="gallery-message" id="galleryMessage"></p>
 
@@ -784,7 +767,7 @@ music.addEventListener('play', updateMusic);
 music.addEventListener('pause', updateMusic);
 
 /* COUNTDOWN */
-const wedding = new Date('2026-11-20T10:30:00+05:30').getTime();
+const wedding = new Date('2026-11-20T09:48:00+05:30').getTime();
 
 function updateCountdown() {
   let diff = Math.max(0, wedding - Date.now());
@@ -873,7 +856,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async e => {
 });
 
 /* PHOTO GALLERY — Supabase Storage (no Google Apps Script) */
-const eventNames={haldi:'Haldi',wedding:'Wedding',reception:'Reception'};
+const eventNames={wedding:'Wedding',reception:'Reception'};
 const galleryPage=document.getElementById('galleryPage');
 const galleryGrid=document.getElementById('galleryGrid');
 const galleryStatus=document.getElementById('galleryStatus');
@@ -1019,7 +1002,7 @@ async function uploadFiles(files){
   }
 }
 for(const id of ['cameraInput','uploadInput'])document.getElementById(id).addEventListener('change',e=>{uploadFiles(Array.from(e.target.files));e.target.value='';});
-const galleryMatch=location.hash.match(/^#(haldi|wedding|reception)-photos$/);
+const galleryMatch=location.hash.match(/^#(wedding|reception)-photos$/);
 if(galleryMatch)openGallery(galleryMatch[1],false);
 </script>
 <script>
